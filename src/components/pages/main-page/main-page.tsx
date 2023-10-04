@@ -1,5 +1,5 @@
 // import * as React from 'react';
-import {Catalog} from "../../catalog/catalog.tsx";
+import {Catalog} from '../../catalog/catalog.tsx';
 type PromoFilmProps = {
   picture: string;
   title: string;
