@@ -84,8 +84,7 @@ function MoviePageReviews(): JSX.Element {
                   <div className="review">
                     <blockquote className="review__quote">
                       <p className="review__text">Discerning travellers and Wes Anderson fans will luxuriate in the
-                        {/* eslint-disable-next-line react/no-unescaped-entities */}
-                        glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed
+                        glorious Mittel-European kitsch of one of the director&apos;s funniest and most exquisitely designed
                         films in years.
                       </p>
 
@@ -100,10 +99,8 @@ function MoviePageReviews(): JSX.Element {
 
                   <div className="review">
                     <blockquote className="review__quote">
-                      {/* eslint-disable-next-line react/no-unescaped-entities */}
-                      <p className="review__text">Anderson's films are too precious for some, but for those of us
-                        {/* eslint-disable-next-line react/no-unescaped-entities */}
-                        willing to lose ourselves in them, they're a delight. "The Grand Budapest Hotel" is no
+                      <p className="review__text">Anderson&apos;s films are too precious for some, but for those of us
+                        willing to lose ourselves in them, they&apos;re a delight. "The Grand Budapest Hotel" is no
                         different, except that he has added a hint of gravitas to the mix, improving the recipe.
                       </p>
 
@@ -118,10 +115,8 @@ function MoviePageReviews(): JSX.Element {
 
                   <div className="review">
                     <blockquote className="review__quote">
-                      {/* eslint-disable-next-line react/no-unescaped-entities */}
-                      <p className="review__text">I didn't find it amusing, and while I can appreciate the creativity,
-                        {/* eslint-disable-next-line react/no-unescaped-entities */}
-                        it's an hour and 40 minutes I wish I could take back.
+                      <p className="review__text">I didn&apos;t find it amusing, and while I can appreciate the creativity,
+                        it&apos;s an hour and 40 minutes I wish I could take back.
                       </p>
 
                       <footer className="review__details">
