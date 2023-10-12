@@ -6,7 +6,7 @@ type PromoFilmProps = {
   genre: string;
   year: number;
 }
-function MainPage({picture, title, genre, year}: PromoFilmProps): JSX.Element {
+function MainPage({ picture, title, genre, year}: PromoFilmProps): JSX.Element {
   return (
     <main>
       <section className="film-card">

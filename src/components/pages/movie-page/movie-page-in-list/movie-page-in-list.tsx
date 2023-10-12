@@ -89,14 +89,11 @@ function MoviePageInList(): JSX.Element {
 
               <div className="film-card__text">
                 <p>In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge
-                  {/* eslint-disable-next-line react/no-unescaped-entities */}
-                  Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave's friend and protege.
+                  Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend and protege.
                 </p>
 
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                <p>Gustave prides himself on providing first-class service to the hotel's guests, including satisfying
-                  {/* eslint-disable-next-line react/no-unescaped-entities */}
-                  the sexual needs of the many elderly women who stay there. When one of Gustave's lovers dies
+                <p>Gustave prides himself on providing first-class service to the hotel&apos;s guests, including satisfying
+                  the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies
                   mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her
                   murder.
                 </p>
