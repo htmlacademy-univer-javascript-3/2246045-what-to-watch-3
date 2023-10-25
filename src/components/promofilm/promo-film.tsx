@@ -15,10 +15,8 @@ function PromoFilm(_props: PromoFilmProps): JSX.Element {
       <div className="film-card__bg">
         <img src={_props.picture} alt={_props.title}/>
       </div>
-
       <h1 className="visually-hidden">WTW</h1>
       <Header/>
-      
       <div className="film-card__wrap">
         <div className="film-card__info">
           <div className="film-card__poster">

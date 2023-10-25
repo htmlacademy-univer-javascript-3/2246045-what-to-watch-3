@@ -13,7 +13,7 @@ export const reviews: Review[] = [
     Author: 'Kate Muir',
     PubDate: 'December 24, 2016',
     Rating: '8,9',
-  }, 
+  },
   {
     Comment: "Anderson's films are too precious for some, but for those of us willing to lose ourselves in them, they're a delight. 'The Grand Budapest Hotel' is no different, except that he has added a hint of gravitas to the mix, improving the recipe.",
     Author: 'Bill Goodykoontz',

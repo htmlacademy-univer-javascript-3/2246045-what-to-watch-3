@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import Header from "../header/header";
-import Footer from "../footer/footer";
+import { Link } from 'react-router-dom';
+import Header from '../header/header';
+import Footer from '../footer/footer';
 
 function MoviePageInList(): JSX.Element {
   return (

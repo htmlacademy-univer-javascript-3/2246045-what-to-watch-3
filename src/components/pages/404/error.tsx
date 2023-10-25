@@ -3,10 +3,9 @@ import { AppRoute } from '../../../const';
 import Header from '../../header/header';
 import styles from '../error.module.css';
 
-
 function Error(): JSX.Element {
   return (
-    <>      
+    <>
       <Header/>
       <div className={styles.error}>
         <h1>Упсс..</h1>
