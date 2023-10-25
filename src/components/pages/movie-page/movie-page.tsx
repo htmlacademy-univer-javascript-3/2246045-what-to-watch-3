@@ -1,13 +1,10 @@
 import { Link, useParams } from "react-router-dom";
 import Footer from "../../footer/footer";
 import Header from "../../header/header";
-import { AppRoute, MoviePageState } from "../../../const";
+import { AppRoute } from "../../../const";
 import { Films } from "../../../mocks/films";
 import { Reviews } from "../../../mocks/reviews";
-import FilmDetailsList from '../../film-details/film-details';
-import FilmReviewsList from '../../film-reviews/film-reviews';
-import FilmOverviewList from '../../film-overview/film-overview';
-import { useState } from "react";
+
 
 
 type MoviePageProps = {
