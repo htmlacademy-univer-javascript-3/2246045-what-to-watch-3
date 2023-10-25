@@ -1,6 +1,6 @@
 import { Films } from '../../mocks/films.ts';
 import FilmCard from '../film-card/film-card.tsx';
-import {useState} from 'react';
+//import {useState} from 'react';
 
 const GENRES = [
   // {
@@ -50,8 +50,8 @@ type FilmsCatalogProps = {
 }
 
 function Catalog(_props: FilmsCatalogProps): JSX.Element {
-  const state = useState(0);
-  console.log(state);
+  //const state = useState(0);
+
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>

@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import { AppRoute } from "../../const";
-import Header from "../header/header.tsx";
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
+import Header from '../header/header.tsx';
 
 type PromoFilmProps = {
   picture: string;
@@ -17,7 +17,7 @@ function PromoFilm(_props: PromoFilmProps): JSX.Element {
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
-        <Header/>
+      <Header/>
       
       <div className="film-card__wrap">
         <div className="film-card__info">
@@ -55,5 +55,5 @@ function PromoFilm(_props: PromoFilmProps): JSX.Element {
     </main>
   );
 }
-        
+
 export default PromoFilm;

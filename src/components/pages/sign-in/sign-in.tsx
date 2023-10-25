@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import Footer from "../../footer/footer";
-import { AppRoute } from "../../../const";
+import { Link } from 'react-router-dom';
+import Footer from '../../footer/footer';
+import { AppRoute } from '../../../const';
 
 function SignIn(): JSX.Element {
   return (

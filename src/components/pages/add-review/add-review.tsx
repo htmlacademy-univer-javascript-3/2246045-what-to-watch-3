@@ -1,7 +1,7 @@
-import { Link, useParams } from "react-router-dom";
-import { Films } from "../../../mocks/films";
-import AddReviewForm from "../../add-review-form/add-review-form";
-import { AppRoute } from "../../../const";
+import { Link, useParams } from 'react-router-dom';
+import { Films } from '../../../mocks/films';
+import AddReviewForm from '../../add-review-form/add-review-form';
+import { AppRoute } from '../../../const';
 
 type AddReviewProps = {
   films: Films;
