@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../../const';
 import Header from '../../header/header';
-import styles from '../error.module.css';
+import styles from '../404/error.module.css';
 
 function Error(): JSX.Element {
   return (
