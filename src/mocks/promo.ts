@@ -4,3 +4,4 @@ export const PromoFilm = {
     Genre: 'Drama',
     Year: 2014,
   };
+  

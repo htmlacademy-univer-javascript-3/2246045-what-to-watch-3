@@ -1,9 +1,9 @@
 import { Link, useParams } from "react-router-dom";
-import Footer from "../../footer/footer";
-import Header from "../../header/header";
-import { AppRoute } from "../../../const";
-import { Films } from "../../../mocks/films";
-import { Reviews } from "../../../mocks/reviews";
+import Footer from '../../footer/footer';
+import Header from '../../header/header';
+import { AppRoute } from '../../../const';
+import { Films } from '../../../mocks/films';
+import { Reviews } from '../../../mocks/reviews';
 
 
 
@@ -25,7 +25,7 @@ function MoviePage(_props: MoviePageProps): JSX.Element {
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
-         <Header/>
+          <Header/>
           <div className="film-card__wrap">
             <div className="film-card__desc">
               <h2 className="film-card__title">{movieInfo.name}</h2>
@@ -139,7 +139,6 @@ function MoviePage(_props: MoviePageProps): JSX.Element {
             </article>
           </div>
         </section>
-
         <Footer/>
       </div>
     </main>

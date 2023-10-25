@@ -57,4 +57,3 @@ function PromoFilm(_props: PromoFilmProps): JSX.Element {
 }
         
 export default PromoFilm;
-        

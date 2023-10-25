@@ -50,8 +50,8 @@ type FilmsCatalogProps = {
 }
 
 function Catalog(_props: FilmsCatalogProps): JSX.Element {
-  const state = useState(0)
-  console.log(state)
+  const state = useState(0);
+  console.log(state);
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
