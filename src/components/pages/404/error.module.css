@@ -1,0 +1,20 @@
+body{
+  background-color: black;
+}
+.error{
+  color: #c9b37e;
+  text-align: center;
+  text-decoration: none;
+}
+.gotomain{
+  background-color: black;
+  color: #c9b37e;
+  border-radius: 10px;
+  border: #c9b37e solid 1.5px;
+  padding: 5px;
+}
+
+.gotomain:hover{
+  background-color: #c9b37e;
+  color: black;
+}

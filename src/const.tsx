@@ -1,7 +1,21 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const PromoFilm = {
-  Picture: 'img/bg-the-grand-budapest-hotel.jpg',
-  Title: 'The Grand Budapest Hotel',
-  Genre: 'Drama',
-  Year: 2014,
-};
+export enum AppRoute {
+  SignIn = '/login',
+  MyList = '/mylist',
+  Films = '/films/',
+  Film = ':id',
+  Main = '/',
+  AddReview = ':review',
+  Player = '/player/:id'
+}
+
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
+
+export enum MoviePageState {
+  Overview = 'Overview',
+  Details = 'Details',
+  Reviews = 'Reviews'
+}
