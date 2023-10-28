@@ -20,7 +20,6 @@ type AppProps = {
   reviews: Reviews;
 }
 
-
 function App(_props: AppProps): JSX.Element {
   return (
     <BrowserRouter>

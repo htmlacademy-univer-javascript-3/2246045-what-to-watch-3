@@ -45,8 +45,6 @@ const GENRES = [
   },
 ];
 
-
-
 type FilmsCatalogProps = {
   films: Films;
 }
@@ -71,10 +69,11 @@ function Catalog(_props: FilmsCatalogProps): JSX.Element {
       <div className="catalog__films-list">
         {_props.films.map((film) => (
           <article className="small-film-card catalog__films-card" key={film.filmId}>
-            <FilmCard film={film} 
-            isActive={Number(film.filmId) === activeCardId} 
-            onMouseLeave={() => setActiveCardId(null)} 
-            onMouseOver={() => setActiveCardId(Number(film.filmId))}/>
+            <FilmCard film={film}
+              isActive={Number(film.filmId) === activeCardId}
+              onMouseLeave={() => setActiveCardId(null)}
+              onMouseOver={() => setActiveCardId(Number(film.filmId))}
+            />
           </article>
         ))}
 
