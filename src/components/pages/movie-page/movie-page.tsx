@@ -34,9 +34,8 @@ function MoviePage(_props: MoviePageProps): JSX.Element {
                 <span className="film-card__year">{movieInfo.year}</span>
               </p>
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button"
-                    onClick={() => navigate(`/player/${String(movieInfo.filmId)}`)}>                  
-                    <svg viewBox="0 0 19 19" width="19" height="19">
+                <button className="btn btn--play film-card__button" type="button" onClick={() => navigate(`/player/${String(movieInfo.filmId)}`)}>
+                  <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>

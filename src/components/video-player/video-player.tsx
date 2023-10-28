@@ -18,7 +18,6 @@ function VideoPlayer(_props: VideoPlayerProps): JSX.Element {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useElementListener('loadeddata', videoRef, () => setIsLoaded(true));
-  console.log(_props.isPlaying);
   useEffect(() => {
 
     if (videoRef.current === null) {
