@@ -3,7 +3,7 @@ import {AppRoute, AuthorizationStatus} from '../../const';
 import MainPage from '../pages/main-page/main-page.tsx';
 import MoviePage from '../pages/movie-page/movie-page.tsx';
 import MyList from '../pages/my-list/my-list.tsx';
-import Player from '../pages/player/player.tsx';
+import FilmPlayer from '../pages/player/player.tsx';
 import SignIn from '../pages/sign-in/sign-in.tsx';
 import Error from '../pages/404/error.tsx';
 import PrivateRoute from '../private-route/private-rout.tsx';
@@ -20,7 +20,6 @@ type AppProps = {
   reviews: Reviews;
 }
 
-
 function App(_props: AppProps): JSX.Element {
   return (
     <BrowserRouter>
@@ -35,12 +34,16 @@ function App(_props: AppProps): JSX.Element {
           }
         />
         <Route path={AppRoute.Films}>
-          <Route path={AppRoute.Film}>
+          <Route path={AppRoute.FilmId}>
             <Route index element={<MoviePage films={_props.films} reviews={_props.reviews}/>}/>
             <Route path={AppRoute.AddReview} element={<AddReview films={_props.films}/>}/>
           </Route>
         </Route>
-        <Route path={AppRoute.Player} element={<Player/>}/>
+        <Route path={AppRoute.Player}>
+          <Route path={AppRoute.FilmId}>
+            <Route index element={<FilmPlayer films={_props.films}/>}/>
+          </Route>
+        </Route>
         <Route path={AppRoute.SignIn} element={<SignIn/>}/>
         <Route path="*" element={<Error/>}/>
       </Routes>

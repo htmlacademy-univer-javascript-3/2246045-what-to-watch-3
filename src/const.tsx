@@ -2,10 +2,10 @@ export enum AppRoute {
   SignIn = '/login',
   MyList = '/mylist',
   Films = '/films/',
-  Film = ':id',
+  FilmId = ':id',
   Main = '/',
   AddReview = ':review',
-  Player = '/player/:id'
+  Player = '/player/'
 }
 
 export enum AuthorizationStatus {
@@ -14,8 +14,4 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum MoviePageState {
-  Overview = 'Overview',
-  Details = 'Details',
-  Reviews = 'Reviews'
-}
+export const DELAY = 1000;

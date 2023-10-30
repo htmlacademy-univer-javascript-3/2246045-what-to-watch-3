@@ -1,9 +1,10 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import Footer from '../../footer/footer';
 import Header from '../../header/header';
 import { AppRoute } from '../../../const';
 import { Films } from '../../../mocks/films';
 import { Reviews } from '../../../mocks/reviews';
+//import { useState } from 'react';
 
 type MoviePageProps = {
   films: Films;
@@ -13,6 +14,9 @@ type MoviePageProps = {
 function MoviePage(_props: MoviePageProps): JSX.Element {
   const params = useParams();
   const [movieInfo] = _props.films.filter((film) => Number(film.filmId) === Number(params.id));
+
+  const navigate = useNavigate();
+
   return (
     <>
       <section className="film-card film-card--full">
@@ -30,7 +34,7 @@ function MoviePage(_props: MoviePageProps): JSX.Element {
                 <span className="film-card__year">{movieInfo.year}</span>
               </p>
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button className="btn btn--play film-card__button" type="button" onClick={() => navigate(`/player/${String(movieInfo.filmId)}`)}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
