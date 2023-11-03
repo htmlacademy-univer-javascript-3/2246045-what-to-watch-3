@@ -9,7 +9,6 @@ import Error from '../pages/404/error.tsx';
 import PrivateRoute from '../private-route/private-rout.tsx';
 import AddReview from '../pages/add-review/add-review.tsx';
 import { Films } from '../../mocks/films.ts';
-import { Reviews } from '../../mocks/reviews.ts';
 
 type AppProps = {
   picture: string;
@@ -17,7 +16,6 @@ type AppProps = {
   genre: string;
   year: number;
   films: Films;
-  reviews: Reviews;
 }
 
 function App(props: AppProps): JSX.Element {
