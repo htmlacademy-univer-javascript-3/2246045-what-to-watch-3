@@ -5,7 +5,7 @@ export type Film = {
   video: string;
   genre: string;
   year: number;
-  rating: number,
+  rating: number;
   scoresCount: number;
   director: string;
   starring: string[];

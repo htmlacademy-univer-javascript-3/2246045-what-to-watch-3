@@ -3,19 +3,18 @@ import Footer from '../../footer/footer';
 import Header from '../../header/header';
 import { AppRoute } from '../../../const';
 import { Films } from '../../../mocks/films';
-import { Reviews, reviews } from '../../../mocks/reviews';
+import { reviews } from '../../../mocks/reviews';
 import FilmTabs from '../../films-tabs/films-tabs';
 import { useState } from 'react';
 import FilmCard from '../../film-card/film-card';
 
 type MoviePageProps = {
   films: Films;
-  reviews: Reviews;
 }
 
 function MoviePage(props: MoviePageProps): JSX.Element {
   const params = useParams();
-  const movieInfo = props.films.find((film) => Number(film.filmId)  === Number(params.id));
+  const movieInfo = props.films.find((film) => Number(film.filmId) === Number(params.id));
   const favoriteFilms = props.films.filter((film) => film.isFavorite);
   const similarFilms = props.films.filter((film) => film.genre === movieInfo?.genre);
 

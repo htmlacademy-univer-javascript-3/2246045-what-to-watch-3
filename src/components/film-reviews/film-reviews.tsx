@@ -28,4 +28,3 @@ function FilmReviewsList(props: FilmReviewsProps): JSX.Element {
   );
 }
 export default FilmReviewsList;
-
