@@ -14,4 +14,10 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+export enum MoviePageState {
+  Overview = 'Overview',
+  Details = 'Details',
+  Reviews = 'Reviews'
+}
+
 export const DELAY = 1000;

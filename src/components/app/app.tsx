@@ -9,7 +9,6 @@ import Error from '../pages/404/error.tsx';
 import PrivateRoute from '../private-route/private-rout.tsx';
 import AddReview from '../pages/add-review/add-review.tsx';
 import { Films } from '../../mocks/films.ts';
-import { Reviews } from '../../mocks/reviews.ts';
 
 type AppProps = {
   picture: string;
@@ -17,14 +16,13 @@ type AppProps = {
   genre: string;
   year: number;
   films: Films;
-  reviews: Reviews;
 }
 
-function App(_props: AppProps): JSX.Element {
+function App(props: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Main} element={<MainPage picture={_props.picture} title={_props.title} genre={_props.genre} year={_props.year} films={_props.films}/>} />
+        <Route path={AppRoute.Main} element={<MainPage picture={props.picture} title={props.title} genre={props.genre} year={props.year} films={props.films}/>} />
         <Route
           path={AppRoute.MyList}
           element={
@@ -35,13 +33,13 @@ function App(_props: AppProps): JSX.Element {
         />
         <Route path={AppRoute.Films}>
           <Route path={AppRoute.FilmId}>
-            <Route index element={<MoviePage films={_props.films} reviews={_props.reviews}/>}/>
-            <Route path={AppRoute.AddReview} element={<AddReview films={_props.films}/>}/>
+            <Route index element={<MoviePage films={props.films}/>}/>
+            <Route path={AppRoute.AddReview} element={<AddReview films={props.films}/>}/>
           </Route>
         </Route>
         <Route path={AppRoute.Player}>
           <Route path={AppRoute.FilmId}>
-            <Route index element={<FilmPlayer films={_props.films}/>}/>
+            <Route index element={<FilmPlayer films={props.films}/>}/>
           </Route>
         </Route>
         <Route path={AppRoute.SignIn} element={<SignIn/>}/>
