@@ -6,9 +6,9 @@ type FilmPlayerProps = {
   films: Films;
 }
 
-function FilmPlayer(_props: FilmPlayerProps): JSX.Element {
+function FilmPlayer(props: FilmPlayerProps): JSX.Element {
   const params = useParams();
-  const [movieInfo] = _props.films.filter((film) => Number(film.filmId) === Number(params.id));
+  const [movieInfo] = props.films.filter((film) => Number(film.filmId) === Number(params.id));
   const navigate = useNavigate();
 
   return (

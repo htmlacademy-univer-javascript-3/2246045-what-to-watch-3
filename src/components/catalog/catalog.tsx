@@ -49,7 +49,7 @@ type FilmsCatalogProps = {
   films: Films;
 }
 
-function Catalog(_props: FilmsCatalogProps): JSX.Element {
+function Catalog(props: FilmsCatalogProps): JSX.Element {
   const [activeCardId, setActiveCardId] = useState<number | null>(null);
   return (
     <section className="catalog">
@@ -67,7 +67,7 @@ function Catalog(_props: FilmsCatalogProps): JSX.Element {
       </ul>
 
       <div className="catalog__films-list">
-        {_props.films.map((film) => (
+        {props.films.map((film) => (
           <article className="small-film-card catalog__films-card" key={film.filmId}>
             <FilmCard film={film}
               isActive={Number(film.filmId) === activeCardId}

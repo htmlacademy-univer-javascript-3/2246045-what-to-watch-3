@@ -11,9 +11,9 @@ type MoviePageProps = {
   reviews: Reviews;
 }
 
-function MoviePage(_props: MoviePageProps): JSX.Element {
+function MoviePage(props: MoviePageProps): JSX.Element {
   const params = useParams();
-  const [movieInfo] = _props.films.filter((film) => Number(film.filmId) === Number(params.id));
+  const [movieInfo] = props.films.filter((film) => Number(film.filmId) === Number(params.id));
 
   const navigate = useNavigate();
 

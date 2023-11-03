@@ -10,14 +10,14 @@ type MainScreenProps = {
   films: Films;
 }
 
-function MainPage(_props: MainScreenProps): JSX.Element {
+function MainPage(props: MainScreenProps): JSX.Element {
   return (
     <>
       <section className="film-card">
-        <PromoFilm picture={_props.picture} title={_props.title} genre={_props.genre} year={_props.year}/>
+        <PromoFilm picture={props.picture} title={props.title} genre={props.genre} year={props.year}/>
       </section>
       <div className="page-content">
-        <Catalog films={_props.films}/>
+        <Catalog films={props.films}/>
       </div>
     </>
   );

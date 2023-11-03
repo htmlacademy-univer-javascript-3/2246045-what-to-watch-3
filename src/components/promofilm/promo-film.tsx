@@ -9,24 +9,24 @@ type PromoFilmProps = {
   year: number;
 }
 
-function PromoFilm(_props: PromoFilmProps): JSX.Element {
+function PromoFilm(props: PromoFilmProps): JSX.Element {
   return (
     <main>
       <div className="film-card__bg">
-        <img src={_props.picture} alt={_props.title}/>
+        <img src={props.picture} alt={props.title}/>
       </div>
       <h1 className="visually-hidden">WTW</h1>
       <Header/>
       <div className="film-card__wrap">
         <div className="film-card__info">
           <div className="film-card__poster">
-            <img src={_props.picture} alt={_props.title} width="218" height="327"/>
+            <img src={props.picture} alt={props.title} width="218" height="327"/>
           </div>
           <div className="film-card__desc">
-            <h2 className="film-card__title">{_props.title}</h2>
+            <h2 className="film-card__title">{props.title}</h2>
             <p className="film-card__meta">
-              <span className="film-card__genre"> {_props.genre} </span>
-              <span className="film-card__year">{_props.year}</span>
+              <span className="film-card__genre"> {props.genre} </span>
+              <span className="film-card__year">{props.year}</span>
             </p>
             <div className="film-card__buttons">
               <Link to={AppRoute.Player}>

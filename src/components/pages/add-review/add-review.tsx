@@ -7,9 +7,9 @@ type AddReviewProps = {
   films: Films;
 }
 
-function AddReview(_props: AddReviewProps): JSX.Element {
+function AddReview(props: AddReviewProps): JSX.Element {
   const params = useParams();
-  const [movieInfo] = _props.films.filter((film) => Number(film.filmId) === Number(params.id));
+  const [movieInfo] = props.films.filter((film) => Number(film.filmId) === Number(params.id));
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">

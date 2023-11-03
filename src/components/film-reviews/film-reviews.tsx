@@ -6,7 +6,7 @@ type FilmsRewiewsProps = {
   reviews: Reviews;
 }
 
-function MoviePageReviews(_props: FilmsRewiewsProps): JSX.Element {
+function MoviePageReviews(props: FilmsRewiewsProps): JSX.Element {
   return (
     <main>
       <section className="film-card film-card--full">
@@ -70,7 +70,7 @@ function MoviePageReviews(_props: FilmsRewiewsProps): JSX.Element {
 
               <div className="film-card__reviews film-card__row">
                 <div className="film-card__reviews-col">
-                  {_props.reviews.map((review) => (
+                  {props.reviews.map((review) => (
                     <div className="review" key={review.Author}>
                       <blockquote className="review__quote">
                         <p className="review__text">{review.Comment}</p>
