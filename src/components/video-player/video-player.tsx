@@ -11,7 +11,7 @@ type VideoPlayerProps = {
   onMouseLeave: MouseEventHandler<HTMLElement>;
 }
 
-function VideoPlayer(_props: VideoPlayerProps): JSX.Element {
+function VideoPlayer(props: VideoPlayerProps): JSX.Element {
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -31,12 +31,12 @@ function VideoPlayer(_props: VideoPlayerProps): JSX.Element {
       }
     }, DELAY);
 
-  }, [_props.isPlaying, isLoaded]);
+  }, [props.isPlaying, isLoaded]);
 
   return (
-    <div onMouseOver={_props.onMouseOver} onMouseLeave={_props.onMouseLeave} className="small-film-card__image">
-      {_props.isPlaying ? <video src={_props.preview} className="player__video" poster={_props.poster} ref={videoRef}></video> :
-        <img src={_props.poster} alt={_props.alt} width="280" height="175" />}
+    <div onMouseOver={props.onMouseOver} onMouseLeave={props.onMouseLeave} className="small-film-card__image">
+      {props.isPlaying ? <video src={props.preview} className="player__video" poster={props.poster} ref={videoRef}></video> :
+        <img src={props.poster} alt={props.alt} width="280" height="175" />}
     </div>
   );
 }

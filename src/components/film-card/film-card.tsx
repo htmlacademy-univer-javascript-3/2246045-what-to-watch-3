@@ -11,14 +11,14 @@ type FilmCardProps = {
   onMouseOver: MouseEventHandler<HTMLElement>;
 }
 
-function FilmCard(_props: FilmCardProps): JSX.Element{
+function FilmCard(props: FilmCardProps): JSX.Element{
   return (
     <>
-      <VideoPlayer preview={_props.film.video} poster={_props.film.image} alt={_props.film.name}
-        isPlaying={_props.isActive} onMouseOver={_props.onMouseOver} onMouseLeave={_props.onMouseLeave}
+      <VideoPlayer preview={props.film.video} poster={props.film.image} alt={props.film.name}
+        isPlaying={props.isActive} onMouseOver={props.onMouseOver} onMouseLeave={props.onMouseLeave}
       />
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={`${AppRoute.Films}${_props.film.filmId}`}>{_props.film.name}</Link>
+        <Link className="small-film-card__link" to={`${AppRoute.Films}${props.film.filmId}`}>{props.film.name}</Link>
       </h3>
     </>
   );

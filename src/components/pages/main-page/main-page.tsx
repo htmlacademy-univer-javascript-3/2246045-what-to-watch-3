@@ -22,9 +22,6 @@ function MainPage(props: MainScreenProps): JSX.Element {
 
           <GenresList films={props.films}/>
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
         </section>
       </div>
     </>
