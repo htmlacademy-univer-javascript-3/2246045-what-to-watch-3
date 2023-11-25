@@ -1,6 +1,7 @@
-import {Catalog} from '../../catalog/catalog.tsx';
 import { Films } from '../../../mocks/films.ts';
 import PromoFilm from '../../promofilm/promo-film.tsx';
+import GenresList from '../../genre-list/genre-list.tsx';
+
 
 type MainScreenProps = {
   picture: string;
@@ -10,14 +11,22 @@ type MainScreenProps = {
   films: Films;
 }
 
-function MainPage(_props: MainScreenProps): JSX.Element {
+function MainPage(props: MainScreenProps): JSX.Element {
   return (
     <>
       <section className="film-card">
-        <PromoFilm picture={_props.picture} title={_props.title} genre={_props.genre} year={_props.year}/>
+        <PromoFilm picture={props.picture} title={props.title} genre={props.genre} year={props.year}/>
       </section>
       <div className="page-content">
-        <Catalog films={_props.films}/>
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">Catalog</h2>
+
+          <GenresList films={props.films}/>
+
+          <div className="catalog__more">
+            <button className="catalog__button" type="button">Show more</button>
+          </div>
+        </section>      
       </div>
     </>
   );
