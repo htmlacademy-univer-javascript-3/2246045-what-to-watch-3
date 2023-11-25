@@ -20,6 +20,8 @@ export enum MoviePageState {
   Reviews = 'Reviews'
 }
 
+export const MOVIE_CARDS_COUNT = 4;
+
 export const DEFAULT_FILTER = 'All genres';
 
 export const DELAY = 1000;

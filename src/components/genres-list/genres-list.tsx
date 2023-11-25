@@ -2,9 +2,12 @@ import { Link } from 'react-router-dom';
 import { Film } from '../../mocks/films';
 import cn from 'classnames';
 import {useAppDispatch, useAppSelector} from '../hooks';
-import {changeGenre, gettingFilmsList} from '../../store/action';
-import { DEFAULT_FILTER } from '../../const';
+import { setGenre } from '../../store/action';
+import { DEFAULT_FILTER, MOVIE_CARDS_COUNT } from '../../const';
 import Catalog from '../catalog/catalog';
+import { filterFilms } from '../../filter';
+import { useState } from 'react';
+import ShowMoreButton from '../show-more-button/show-more-button';
 
 type GenresListProps = {
   films: Film[];
@@ -17,27 +20,41 @@ const makeFilmsGenresArray = (films: Film[]) => {
   return [...uniqSet];
 };
 
+const sliceFilmsList = (filmsList: Film[], count: number) => {
+  if (filmsList.length > MOVIE_CARDS_COUNT) {
+    const slicedFilmsList = filmsList.slice(0, MOVIE_CARDS_COUNT + count);
+    return slicedFilmsList;
+  }
+  return filmsList;
+};
+
 function GenresList(props: GenresListProps): JSX.Element {
   const genre = useAppSelector((state) => state.genre);
-  const filteredFilmList = useAppSelector((state) => state.filmsList);
   const dispatch = useAppDispatch();
+  const filteredFilmsList = filterFilms(props.films, genre);
+
+  const[count, setCount] = useState(0);
+  const slicedFilms = sliceFilmsList(filteredFilmsList, count);
+
+  const newLength = Math.min(filteredFilmsList.length, slicedFilms.length);
+  
   return (
     <>
       <ul className="catalog__genres-list">
         {makeFilmsGenresArray(props.films).map((filmsGenre) => (
           <li className={cn('catalog__genres-item', { 'catalog__genres-item--active': genre === filmsGenre })} key={filmsGenre}>
             <Link to='' className="catalog__genres-link" onClick={() => {
-              dispatch(changeGenre({ genre: filmsGenre }));
-              dispatch(gettingFilmsList({ genre: filmsGenre }));
+              dispatch(setGenre({ genre: filmsGenre }));
+              setCount(0);
             } }
             >{filmsGenre}
             </Link>
           </li>
         ))}
       </ul>
-      <div className="catalog__films-list">
-        <Catalog films={filteredFilmList} />
-      </div>
+      <Catalog films={slicedFilms} />
+      {filteredFilmsList.length > slicedFilms.length &&
+         <ShowMoreButton onShowMoreButtonClick={() => setCount(newLength)}/>}
     </>
   );
 }
