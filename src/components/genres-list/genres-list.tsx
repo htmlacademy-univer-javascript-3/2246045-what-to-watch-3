@@ -32,12 +32,9 @@ function GenresList(props: GenresListProps): JSX.Element {
   const genre = useAppSelector((state) => state.genre);
   const dispatch = useAppDispatch();
   const filteredFilmsList = filterFilms(props.films, genre);
-
   const[count, setCount] = useState(0);
   const slicedFilms = sliceFilmsList(filteredFilmsList, count);
-
   const newLength = Math.min(filteredFilmsList.length, slicedFilms.length);
-  
   return (
     <>
       <ul className="catalog__genres-list">

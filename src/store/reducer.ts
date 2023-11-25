@@ -13,7 +13,7 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(setGenre, (state, action) => {
       const {genre} = action.payload;
       state.genre = genre;
-    })
+    });
 });
 
 export {reducer};
