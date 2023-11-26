@@ -26,7 +26,6 @@ function VideoPlayer(props: VideoPlayerProps): JSX.Element {
 
     setTimeout(() => {
       if (videoRef.current && isLoaded) {
-        videoRef.current.muted = true;
         videoRef.current.play();
       }
     }, DELAY);
@@ -35,8 +34,9 @@ function VideoPlayer(props: VideoPlayerProps): JSX.Element {
 
   return (
     <div onMouseOver={props.onMouseOver} onMouseLeave={props.onMouseLeave} className="small-film-card__image">
-      {props.isPlaying ? <video src={props.preview} className="player__video" poster={props.poster} ref={videoRef}></video> :
-        <img src={props.poster} alt={props.alt} width="280" height="175" />}
+      {props.isPlaying 
+        ? <video src={props.preview} className="player__video" poster={props.poster} ref={videoRef} muted></video> 
+        : <img src={props.poster} alt={props.alt} width="280" height="175" />}
     </div>
   );
 }

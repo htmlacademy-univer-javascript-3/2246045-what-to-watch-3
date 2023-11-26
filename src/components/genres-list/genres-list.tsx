@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Film } from '../../mocks/films';
+import { Films } from '../../mocks/films';
 import cn from 'classnames';
 import {useAppDispatch, useAppSelector} from '../hooks';
 import { setGenre } from '../../store/action';
@@ -10,17 +10,17 @@ import { useState } from 'react';
 import ShowMoreButton from '../show-more-button/show-more-button';
 
 type GenresListProps = {
-  films: Film[];
+  films: Films;
 }
 
-const makeFilmsGenresArray = (films: Film[]) => {
+const makeFilmsGenresArray = (films: Films) => {
   const filmsGenres = films.map((film) => film.genre);
   filmsGenres.unshift(DEFAULT_FILTER);
   const uniqSet = new Set(filmsGenres);
   return [...uniqSet];
 };
 
-const sliceFilmsList = (filmsList: Film[], count: number) => {
+const sliceFilmsList = (filmsList: Films, count: number) => {
   if (filmsList.length > MOVIE_CARDS_COUNT) {
     const slicedFilmsList = filmsList.slice(0, MOVIE_CARDS_COUNT + count);
     return slicedFilmsList;
@@ -49,6 +49,7 @@ function GenresList(props: GenresListProps): JSX.Element {
           </li>
         ))}
       </ul>
+      
       <Catalog films={slicedFilms} />
       {filteredFilmsList.length > slicedFilms.length &&
          <ShowMoreButton onShowMoreButtonClick={() => setCount(newLength)}/>}

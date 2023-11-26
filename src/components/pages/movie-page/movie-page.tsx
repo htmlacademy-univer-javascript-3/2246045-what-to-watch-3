@@ -2,43 +2,43 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import Footer from '../../footer/footer';
 import Header from '../../header/header';
 import { AppRoute } from '../../../const';
-import { Films } from '../../../mocks/films';
+import { Film } from '../../../mocks/films';
 import { reviews } from '../../../mocks/reviews';
 import FilmTabs from '../../films-tabs/films-tabs';
 import { useState } from 'react';
 import FilmCard from '../../film-card/film-card';
 
 type MoviePageProps = {
-  films: Films;
+  films: Film[];
 }
 
-function MoviePage(props: MoviePageProps): JSX.Element {
-  const params = useParams();
-  const movieInfo = props.films.find((film) => Number(film.filmId) === Number(params.id));
-  const favoriteFilms = props.films.filter((film) => film.isFavorite);
-  const similarFilms = props.films.filter((film) => film.genre === movieInfo?.genre);
+function MoviePage({films}: MoviePageProps): JSX.Element {
+  const {id} = useParams();
+  const movieInfo = films.find((film) => film.id === id) as Film;
+  const favoriteFilms = films.filter((film) => film.isFavorite);
+  const similarFilms = films.filter((film) => film.genre === movieInfo.genre);
 
-  const [activeCardId, setActiveCardId] = useState<number | null>(null);
+  const [activeCardId, setActiveCardId] = useState<string | null>(null);
   const navigate = useNavigate();
 
   return (
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
-          <div className="film-card__bg">
-            <img src={movieInfo?.image} alt={movieInfo?.name}/>
+          <div className="film-card__bg" style={{backgroundColor: movieInfo.backgroundColor}}>
+            <img src={movieInfo.backgroundImage} alt={movieInfo.name}/>
           </div>
           <h1 className="visually-hidden">WTW</h1>
           <Header/>
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{movieInfo?.name}</h2>
+              <h2 className="film-card__title">{movieInfo.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{movieInfo?.genre}</span>
-                <span className="film-card__year">{movieInfo?.year}</span>
+                <span className="film-card__genre">{movieInfo.genre}</span>
+                <span className="film-card__year">{movieInfo.released}</span>
               </p>
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button" onClick={() => navigate(`/player/${String(movieInfo?.filmId)}`)}>
+                <button className="btn btn--play film-card__button" type="button" onClick={() => navigate(`/player/${movieInfo.id}`)}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -60,7 +60,7 @@ function MoviePage(props: MoviePageProps): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={movieInfo?.image} alt={movieInfo?.name} width="218" height="327"/>
+              <img src={movieInfo.posterImage} alt={movieInfo.name} width="218" height="327"/>
             </div>
 
             <FilmTabs films={movieInfo} Review={reviews}/>
@@ -74,9 +74,9 @@ function MoviePage(props: MoviePageProps): JSX.Element {
 
           <div className="catalog__films-list">
             {similarFilms.length !== 1 ? similarFilms.slice(0, 4).map((film) => (
-              movieInfo?.filmId !== film.filmId ?
-                <article className="small-film-card catalog__films-card" key={film.filmId}>
-                  <FilmCard film={film} isActive={Number(film.filmId) === activeCardId} onMouseLeave={() => setActiveCardId(null)} onMouseOver={() => setActiveCardId(Number(film.filmId))}/>
+              movieInfo.id !== film.id ?
+                <article className="small-film-card catalog__films-card" key={film.id}>
+                  <FilmCard film={film} isActive={film.id === activeCardId} onMouseLeave={() => setActiveCardId(null)} onMouseOver={() => setActiveCardId(film.id)}/>
                 </article> : ''
             )
             ) : 'No similar films'}
