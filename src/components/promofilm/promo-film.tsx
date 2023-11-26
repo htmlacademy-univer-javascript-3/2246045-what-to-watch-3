@@ -3,8 +3,6 @@ import { AppRoute } from '../../const';
 import Header from '../header/header.tsx';
 import { Films } from '../../mocks/films.ts';
 
-
-
 type PromoFilmProps = {
   picture: string;
   title: string;

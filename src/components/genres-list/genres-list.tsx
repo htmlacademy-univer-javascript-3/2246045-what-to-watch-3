@@ -49,8 +49,7 @@ function GenresList(props: GenresListProps): JSX.Element {
           </li>
         ))}
       </ul>
-      
-      <Catalog films={slicedFilms} />
+      <Catalog films={slicedFilms}/>
       {filteredFilmsList.length > slicedFilms.length &&
          <ShowMoreButton onShowMoreButtonClick={() => setCount(newLength)}/>}
     </>

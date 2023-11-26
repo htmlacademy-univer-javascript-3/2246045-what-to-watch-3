@@ -22,7 +22,7 @@ function FilmDetailsList(props: FilmDetailsProps): JSX.Element {
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
           <span className="film-card__details-value">
-          {props.films.starring.map((star, index) =>
+            {props.films.starring.map((star, index) =>
               (
                 index === props.films.starring.length - 1
                   ? <span key={`id-${star}`}>{star}</span>
@@ -36,7 +36,7 @@ function FilmDetailsList(props: FilmDetailsProps): JSX.Element {
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>
-          <span className="film-card__details-value">{getTimeFromMins(props.films.runTime as number)}</span>
+          <span className="film-card__details-value">{getTimeFromMins(props.films.runTime)}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>
