@@ -14,7 +14,7 @@ function MainPage(props: MainScreenProps): JSX.Element {
   return (
     <>
       <section className="film-card">
-        <PromoFilm picture={props.picture} title={props.title} genre={props.genre} year={props.year}/>
+        <PromoFilm picture={props.picture} title={props.title} genre={props.genre} year={props.year} films={props.films}/>
       </section>
       <div className="page-content">
         <section className="catalog">

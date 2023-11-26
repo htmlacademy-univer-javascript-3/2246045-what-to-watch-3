@@ -9,12 +9,12 @@ type AddReviewProps = {
 
 function AddReview(props: AddReviewProps): JSX.Element {
   const params = useParams();
-  const [movieInfo] = props.films.filter((film) => Number(film.filmId) === Number(params.id));
+  const [movieInfo] = props.films.filter((film) => film.id === params.id);
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={movieInfo.image} alt={movieInfo.name}/>
+          <img src={movieInfo.backgroundImage} alt={movieInfo.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -30,7 +30,7 @@ function AddReview(props: AddReviewProps): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`${AppRoute.Films}${movieInfo.filmId}`} className="breadcrumbs__link">{movieInfo.name}</Link>
+                <Link to={`${AppRoute.Films}${movieInfo.id}`} className="breadcrumbs__link">{movieInfo.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -50,7 +50,7 @@ function AddReview(props: AddReviewProps): JSX.Element {
           </ul>
         </header>
         <div className="film-card__poster film-card__poster--small">
-          <img src={movieInfo.image} alt={movieInfo.name} width="218" height="327"/>
+          <img src={movieInfo.posterImage} alt={movieInfo.name} width="218" height="327"/>
         </div>
       </div>
       <AddReviewForm/>

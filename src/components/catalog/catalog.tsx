@@ -8,13 +8,13 @@ type FilmsCatalogProps = PropsWithChildren<{
 }>
 
 function Catalog(props: FilmsCatalogProps): JSX.Element {
-  const [activeCardId, setActiveCardId] = useState<number | null>(null);
+  const [activeCardId, setActiveCardId] = useState<string | null>(null);
   return (
     <>
       <div className="catalog__films-list">
         {props.films.map((film) => (
-          <article className="small-film-card catalog__films-card" key={film.filmId}>
-            <FilmCard film={film} isActive={Number(film.filmId) === activeCardId} onMouseLeave={() => setActiveCardId(null)} onMouseOver={() => setActiveCardId(Number(film.filmId))}/>
+          <article className="small-film-card catalog__films-card" key={film.id}>
+            <FilmCard film={film} isActive={(film.id) === activeCardId} onMouseLeave={() => setActiveCardId(null)} onMouseOver={() => setActiveCardId((film.id))}/>
           </article>
         ))}
       </div>

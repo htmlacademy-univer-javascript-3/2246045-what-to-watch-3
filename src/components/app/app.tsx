@@ -8,21 +8,29 @@ import SignIn from '../pages/sign-in/sign-in.tsx';
 import Error from '../pages/404/error.tsx';
 import PrivateRoute from '../private-route/private-rout.tsx';
 import AddReview from '../pages/add-review/add-review.tsx';
-import { Films } from '../../mocks/films.ts';
+import { useAppSelector } from '../hooks';
+import LoadingPage from '../pages/loading-page/loading-page.tsx';
 
 type AppProps = {
   picture: string;
   title: string;
   genre: string;
   year: number;
-  films: Films;
 }
 
 function App(props: AppProps): JSX.Element {
+  const filmsList = useAppSelector((state) => state.filmsList);
+  const isFilmsDataLoading = useAppSelector((state) => state.isFilmsDataLoading);
+
+  if (isFilmsDataLoading) {
+    return (
+      <LoadingPage/>
+    );
+  }
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Main} element={<MainPage picture={props.picture} title={props.title} genre={props.genre} year={props.year} films={props.films}/>} />
+        <Route path={AppRoute.Main} element={<MainPage picture={props.picture} title={props.title} genre={props.genre} year={props.year} films={filmsList}/>} />
         <Route
           path={AppRoute.MyList}
           element={
@@ -33,13 +41,13 @@ function App(props: AppProps): JSX.Element {
         />
         <Route path={AppRoute.Films}>
           <Route path={AppRoute.FilmId}>
-            <Route index element={<MoviePage films={props.films}/>}/>
-            <Route path={AppRoute.AddReview} element={<AddReview films={props.films}/>}/>
+            <Route index element={<MoviePage films={filmsList}/>}/>
+            <Route path={AppRoute.AddReview} element={<AddReview films={filmsList}/>}/>
           </Route>
         </Route>
         <Route path={AppRoute.Player}>
           <Route path={AppRoute.FilmId}>
-            <Route index element={<FilmPlayer films={props.films}/>}/>
+            <Route index element={<FilmPlayer films={filmsList}/>}/>
           </Route>
         </Route>
         <Route path={AppRoute.SignIn} element={<SignIn/>}/>
