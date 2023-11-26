@@ -30,7 +30,7 @@ function FilmOverviewList(props: FilmOverviewProps): JSX.Element {
         <div className="film-rating__score">{props.films.rating}</div>
         <p className="film-rating__meta">
           <span className="film-rating__level">
-            {setFilmRating(props.films.rating as number)}
+            {setFilmRating(props.films.rating)}
           </span>
           <span className="film-rating__count">{props.films.scoresCount}</span>
         </p>
