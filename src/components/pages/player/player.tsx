@@ -8,14 +8,14 @@ type FilmPlayerProps = {
 
 function FilmPlayer(props: FilmPlayerProps): JSX.Element {
   const params = useParams();
-  const [movieInfo] = props.films.filter((film) => Number(film.filmId) === Number(params.id));
+  const [movieInfo] = props.films.filter((film) => (film.id) === (params.id));
   const navigate = useNavigate();
 
   return (
     <div className="player">
-      <video src={movieInfo.video} className="player__video" poster={movieInfo.image} autoPlay></video>
+      <video src={movieInfo.videoLink} className="player__video" poster={movieInfo.posterImage} autoPlay></video>
 
-      <button type="button" className="player__exit" onClick={() => navigate(`${AppRoute.Films}${movieInfo.filmId}`)}>Exit</button>
+      <button type="button" className="player__exit" onClick={() => navigate(`${AppRoute.Films}${movieInfo.id}`)}>Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">
