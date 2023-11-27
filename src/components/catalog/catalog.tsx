@@ -1,5 +1,5 @@
 import { PropsWithChildren, useState } from 'react';
-import { Films } from '../../mocks/films.ts';
+import { Films } from '../pages/main-page/film-list-props.ts';
 import FilmCard from '../film-card/film-card.tsx';
 
 

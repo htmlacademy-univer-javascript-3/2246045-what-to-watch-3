@@ -20,9 +20,11 @@ type AppProps = {
 
 function App(props: AppProps): JSX.Element {
   const filmsList = useAppSelector((state) => state.filmsList);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const films = useAppSelector((state) => state.films);
   const isFilmsDataLoading = useAppSelector((state) => state.isFilmsDataLoading);
 
-  if (isFilmsDataLoading) {
+  if (authorizationStatus === AuthorizationStatus.Unknown || isFilmsDataLoading) {
     return (
       <LoadingPage/>
     );
@@ -30,24 +32,30 @@ function App(props: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Main} element={<MainPage picture={props.picture} title={props.title} genre={props.genre} year={props.year} films={filmsList}/>} />
+        <Route path={AppRoute.Main} element={<MainPage picture={props.picture} title={props.title} genre={props.genre} year={props.year} films={filmsList} />} />
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+            <PrivateRoute authorizationStatus={authorizationStatus}>
               <MyList />
             </PrivateRoute>
           }
         />
         <Route path={AppRoute.Films}>
           <Route path={AppRoute.FilmId}>
-            <Route index element={<MoviePage films={filmsList}/>}/>
-            <Route path={AppRoute.AddReview} element={<AddReview films={filmsList}/>}/>
+            <Route index element={<MoviePage filmsList={filmsList} films={films}/>}/>
+            <Route path={AppRoute.AddReview}
+              element={
+                <PrivateRoute authorizationStatus={authorizationStatus}>
+                  <AddReview films={films}/>
+                </PrivateRoute>
+              }
+            />
           </Route>
         </Route>
         <Route path={AppRoute.Player}>
           <Route path={AppRoute.FilmId}>
-            <Route index element={<FilmPlayer films={filmsList}/>}/>
+            <Route index element={<FilmPlayer films={films}/>}/>
           </Route>
         </Route>
         <Route path={AppRoute.SignIn} element={<SignIn/>}/>

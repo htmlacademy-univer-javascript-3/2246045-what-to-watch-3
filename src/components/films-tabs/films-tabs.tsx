@@ -8,7 +8,7 @@ import FilmReviewsList from '../../components/film-reviews/film-reviews';
 import FilmOverviewList from '../../components/film-overview/film-overview';
 
 type FilmTabsProps = {
-  films: Film;
+  films: Film | undefined;
   Review: Reviews | undefined;
 }
 

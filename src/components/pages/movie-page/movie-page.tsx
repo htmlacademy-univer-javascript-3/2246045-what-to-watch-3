@@ -3,20 +3,23 @@ import Footer from '../../footer/footer';
 import Header from '../../header/header';
 import { AppRoute } from '../../../const';
 import { Film } from '../../../mocks/films';
+import { FilmSmall } from '../main-page/film-list-props';
 import { reviews } from '../../../mocks/reviews';
 import FilmTabs from '../../films-tabs/films-tabs';
 import { useState } from 'react';
 import FilmCard from '../../film-card/film-card';
 
 type MoviePageProps = {
+  filmsList: FilmSmall[];
   films: Film[];
 }
 
-function MoviePage({films}: MoviePageProps): JSX.Element {
+function MoviePage({filmsList, films}: MoviePageProps): JSX.Element {
   const {id} = useParams();
-  const movieInfo = films.find((film) => film.id === id) as Film;
+  const movieInfo = filmsList.find((film) => film.id === id) as FilmSmall;
+  const movie = films.find((film) => film.id === id);
   const favoriteFilms = films.filter((film) => film.isFavorite);
-  const similarFilms = films.filter((film) => film.genre === movieInfo.genre);
+  const similarFilms = filmsList.filter((film) => film.genre === movieInfo.genre);
 
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -25,8 +28,8 @@ function MoviePage({films}: MoviePageProps): JSX.Element {
     <>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
-          <div className="film-card__bg" style={{backgroundColor: movieInfo.backgroundColor}}>
-            <img src={movieInfo.backgroundImage} alt={movieInfo.name}/>
+          <div className="film-card__bg" style={{backgroundColor: movie?.backgroundColor}}>
+            <img src={movie?.backgroundImage} alt={movieInfo.name}/>
           </div>
           <h1 className="visually-hidden">WTW</h1>
           <Header/>
@@ -35,7 +38,7 @@ function MoviePage({films}: MoviePageProps): JSX.Element {
               <h2 className="film-card__title">{movieInfo.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{movieInfo.genre}</span>
-                <span className="film-card__year">{movieInfo.released}</span>
+                <span className="film-card__year">{movie?.released}</span>
               </p>
               <div className="film-card__buttons">
                 <button className="btn btn--play film-card__button" type="button" onClick={() => navigate(`/player/${movieInfo.id}`)}>
@@ -60,10 +63,10 @@ function MoviePage({films}: MoviePageProps): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={movieInfo.posterImage} alt={movieInfo.name} width="218" height="327"/>
+              <img src={movie?.posterImage} alt={movieInfo.name} width="218" height="327"/>
             </div>
 
-            <FilmTabs films={movieInfo} Review={reviews}/>
+            <FilmTabs films={movie} Review={reviews}/>
           </div>
         </div>
       </section>
