@@ -1,18 +1,18 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import Header from '../header/header.tsx';
-import { Films } from '../../mocks/films.ts';
+{/*import { Film } from '../../mocks/films.ts';*/}
 
 type PromoFilmProps = {
   picture: string;
   title: string;
   genre: string;
   year: number;
-  films: Films;
+  /*film: Film[];*/
 }
 
 function PromoFilm(props: PromoFilmProps): JSX.Element {
-  const favoriteFilms = props.films.filter((film) => film.isFavorite);
+{/*const favoriteFilms = props.film.filter((film) => film.isFavorite);*/}
   return (
     <main>
       <div className="film-card__bg">
@@ -46,7 +46,8 @@ function PromoFilm(props: PromoFilmProps): JSX.Element {
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
-                  <span className="film-card__count">{favoriteFilms.length}</span>
+                  <span className="film-card__count">9</span>
+                  {/* <span className="film-card__count">{favoriteFilms.length}</span> */}
                 </button>
               </Link>
             </div>

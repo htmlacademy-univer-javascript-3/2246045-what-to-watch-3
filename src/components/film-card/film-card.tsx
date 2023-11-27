@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { Film } from '../../mocks/films';
+import { FilmSmall } from '../pages/main-page/film-list-props';
 import VideoPlayer from '../video-player/video-player';
 import { MouseEventHandler } from 'react';
 
 type FilmCardProps = {
-  film: Film;
+  film: FilmSmall;
   isActive: boolean;
   onMouseLeave: MouseEventHandler<HTMLElement>;
   onMouseOver: MouseEventHandler<HTMLElement>;
@@ -14,7 +14,7 @@ type FilmCardProps = {
 function FilmCard(props: FilmCardProps): JSX.Element{
   return (
     <>
-      <VideoPlayer preview={props.film.videoLink} poster={props.film.posterImage} alt={props.film.name}
+      <VideoPlayer preview={props.film.previewVideoLink} poster={props.film.previewImage} alt={props.film.name}
         isPlaying={props.isActive} onMouseOver={props.onMouseOver} onMouseLeave={props.onMouseLeave}
       />
       <h3 className="small-film-card__title">

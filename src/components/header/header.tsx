@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { useAppSelector } from '../hooks';
+import Avatar from '../avatar/avatar';
 
 function Header(): JSX.Element {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
   return (
-    <header className="page-header film-card__head">
+    <header className="page-header user-page__head">
       <div className="logo">
         <a className="logo__link">
           <span className="logo__letter logo__letter--1">W</span>
@@ -11,19 +15,12 @@ function Header(): JSX.Element {
           <span className="logo__letter logo__letter--3">W</span>
         </a>
       </div>
-      <ul className="user-block">
-        <li className="user-block__item">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-          </div>
-        </li>
-        <li className="user-block__item">
-          <Link to={AppRoute.SignIn} className="user-block__link">Sign out</Link>
-        </li>
-      </ul>
+      {authorizationStatus === AuthorizationStatus.Auth ? <Avatar/> :
+        <div className="user-block">
+          <Link to={AppRoute.SignIn} className="user-block__link">Sign in</Link>
+        </div>}
     </header>
   );
 }
-
 export default Header;
 

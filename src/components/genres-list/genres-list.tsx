@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Films } from '../../mocks/films';
+import { Films } from '../pages/main-page/film-list-props';
 import cn from 'classnames';
 import {useAppDispatch, useAppSelector} from '../hooks';
 import { setGenre } from '../../store/action';
