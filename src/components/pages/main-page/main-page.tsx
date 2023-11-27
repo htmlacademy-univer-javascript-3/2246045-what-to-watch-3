@@ -1,5 +1,4 @@
 import { Films } from './film-list-props.ts';
-import { Film } from '../../../mocks/films.ts';
 import PromoFilm from '../../promofilm/promo-film.tsx';
 import GenresList from '../../genres-list/genres-list.tsx';
 

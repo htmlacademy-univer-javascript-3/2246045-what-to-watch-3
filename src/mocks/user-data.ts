@@ -4,3 +4,4 @@ export type UserData = {
     token: string;
     avatarUrl: string;
   };
+  
