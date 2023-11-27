@@ -17,7 +17,7 @@ store.dispatch(checkAuthAction());
 root.render(
   <React.StrictMode>
     <Provider store = {store}>
-    <ToastContainer />
+      <ToastContainer />
       <App picture={PromoFilm.Picture}
         title={PromoFilm.Title}
         genre={PromoFilm.Genre}

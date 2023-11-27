@@ -12,7 +12,7 @@ type PromoFilmProps = {
 }
 
 function PromoFilm(props: PromoFilmProps): JSX.Element {
-{/*const favoriteFilms = props.film.filter((film) => film.isFavorite);*/}
+  {/*const favoriteFilms = props.film.filter((film) => film.isFavorite);*/}
   return (
     <main>
       <div className="film-card__bg">

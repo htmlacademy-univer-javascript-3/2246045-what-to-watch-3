@@ -17,7 +17,7 @@ type MoviePageProps = {
 function MoviePage({filmsList, films}: MoviePageProps): JSX.Element {
   const {id} = useParams();
   const movieInfo = filmsList.find((film) => film.id === id) as FilmSmall;
-  const movie = films.find((movieInfo) => movieInfo.id === id);
+  const movie = films.find((film) => film.id === id);
   const favoriteFilms = films.filter((film) => film.isFavorite);
   const similarFilms = filmsList.filter((film) => film.genre === movieInfo.genre);
 

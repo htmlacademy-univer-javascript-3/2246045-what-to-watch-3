@@ -44,13 +44,12 @@ function App(props: AppProps): JSX.Element {
         <Route path={AppRoute.Films}>
           <Route path={AppRoute.FilmId}>
             <Route index element={<MoviePage filmsList={filmsList} films={films}/>}/>
-            <Route path={AppRoute.AddReview} element={
-              <PrivateRoute
-                authorizationStatus={authorizationStatus}
-              >
-                <AddReview films={films}/>
-              </PrivateRoute>
-            }/>
+            <Route path={AppRoute.AddReview} 
+              element={
+                <PrivateRoute authorizationStatus={authorizationStatus}>
+                  <AddReview films={films}/>
+                </PrivateRoute>
+              }/>
           </Route>
         </Route>
         <Route path={AppRoute.Player}>
