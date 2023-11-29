@@ -18,7 +18,7 @@ export type AppProps = {
   smallFilmCards: PreviewFilm[];
 }
 
-export default function App({promoFilmCard, smallFilmCards, films}: AppProps) {  return (
+export default function App({promoFilmCard, films}: AppProps) {  return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>

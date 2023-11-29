@@ -1,13 +1,10 @@
 import Header from '../../header/header';
 import Footer from '../../footer/footer';
-import { FilmCardProps } from '../../film-card/film-card';
 import { Helmet } from 'react-helmet-async';
 import Catalog from '../../catalog/catalog';
 import { films } from '../../../mocks/films';
 
-type MyListScreenProps = {
-  smallFilmCards: FilmCardProps[];
-}
+
 export default function MyListScreen() {
   return(
     <div className="user-page">
