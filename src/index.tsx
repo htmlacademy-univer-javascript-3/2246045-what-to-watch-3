@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App, { AppProps } from './components/app/app';
-import { films } from './mocks/films';
 import { promoFilm } from './mocks/promo';
-import { PreviewFilm } from './types/preview-film';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { checkAuthAction, fetchFilmsAction } from './store/api-actions';
@@ -13,8 +11,7 @@ store.dispatch(fetchFilmsAction());
 store.dispatch(checkAuthAction());
 const appData: AppProps = {
   promoFilmCard: promoFilm,
-  smallFilmCards: films.slice(1, films.length) as PreviewFilm[],
-  films: []
+  films: [],
 };
 
 const root = ReactDOM.createRoot(
@@ -26,7 +23,6 @@ root.render(
       <ToastContainer />
       <App
         promoFilmCard={appData.promoFilmCard}
-        smallFilmCards={appData.smallFilmCards}
         films={appData.films}
       />
     </Provider>

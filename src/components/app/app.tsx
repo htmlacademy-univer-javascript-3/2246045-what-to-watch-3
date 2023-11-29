@@ -8,17 +8,16 @@ import Error from '../pages/404/error';
 import PrivateRoute from '../private-route/private-rout';
 import { Film } from '../../types/films';
 import { PromoFilmCardProps } from '../promo-film/promo-film';
-import { PreviewFilm } from '../../types/preview-film';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 export type AppProps = {
   promoFilmCard: PromoFilmCardProps;
   films: Film[];
-  smallFilmCards: PreviewFilm[];
 }
 
-export default function App({promoFilmCard, films}: AppProps) {  return (
+export default function App({promoFilmCard, films}: AppProps) {  
+  return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>

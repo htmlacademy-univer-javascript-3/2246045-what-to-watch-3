@@ -17,4 +17,3 @@ export const promoFilm = {
     released: 2014,
     isFavorite: false
   };
-  
