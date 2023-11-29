@@ -1,10 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import Header from '../header/header';
-import { useAppSelector } from '../hooks';
-{/*import { getFavoriteFilmCount } from '../../store/my-list-process/selectors';
-import ChangeFavoriteStatusButton from '../change-favorite-status-button/change-favorite-status-button';
-import { getAuthorizationStatus } from '../../store/user-process/selector';*/}
 
 export type PromoFilmCardProps = {
   id: string;
@@ -13,14 +9,10 @@ export type PromoFilmCardProps = {
   backgroundImage: string;
   genre: string;
   released: number;
-  isFavorite: boolean;
 }
 
-export default function PromoFilmCard({id, posterImage, name, genre, released, backgroundImage, isFavorite}: PromoFilmCardProps) {
+export default function PromoFilmCard({id, posterImage, name, genre, released, backgroundImage}: PromoFilmCardProps) {
   const navigate = useNavigate();
-  {/*const favoriteFilmCount = useAppSelector(getFavoriteFilmCount);
-    const authorizationStatus = useAppSelector(getAuthorizationStatus);*/}
-
   return (
     <section className="film-card">
       <div className="film-card__bg">
@@ -29,9 +21,7 @@ export default function PromoFilmCard({id, posterImage, name, genre, released, b
 
       <h1 className="visually-hidden">WTW</h1>
 
-      <header className="page-header film-card__head">
-        <Header/>
-      </header>
+      <Header />
 
       <div className="film-card__wrap">
         <div className="film-card__info">
@@ -53,12 +43,13 @@ export default function PromoFilmCard({id, posterImage, name, genre, released, b
                 </svg>
                 <span>Play</span>
               </button>
-              {/*<ChangeFavoriteStatusButton
-                filmId={id}
-                isFavorite={isFavorite}
-                favoriteFilmCount={favoriteFilmCount}
-                authorizationStatus={authorizationStatus}
-  />*/}
+              <button className="btn btn--list film-card__button" type="button">
+                <svg viewBox="0 0 19 20" width="19" height="20">
+                  <use xlinkHref="#add"></use>
+                </svg>
+                <span>My list</span>
+                <span className="film-card__count">9</span>
+              </button>
             </div>
           </div>
         </div>

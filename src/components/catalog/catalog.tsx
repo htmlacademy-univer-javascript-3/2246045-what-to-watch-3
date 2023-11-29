@@ -1,25 +1,39 @@
-import { PropsWithChildren, useState } from 'react';
-import { Films } from '../pages/main-page/film-list-props.ts';
-import FilmCard from '../film-card/film-card.tsx';
+import { DELAY } from '../../const';
+import { PreviewFilm } from '../../types/preview-film';
+import FilmCard from '../film-card/film-card';
+import { useRef, useState } from 'react';
 
+type FilmListProps = {
+  films: PreviewFilm[];
+  filmCount?: number;
+}
 
-type FilmsCatalogProps = PropsWithChildren<{
-  films: Films;
-}>
+export default function Catalog({films, filmCount}: FilmListProps) {
+  const [activeFilm, setActiveFilm] = useState('');
+  const timer = useRef<NodeJS.Timeout>();
+  const sliceFilms = filmCount ? films.slice(0, filmCount) : films;
 
-
-export default function Catalog(props: FilmsCatalogProps): JSX.Element {
-  const [activeCardId, setActiveCardId] = useState<string | null>(null);
   return (
-    <>
-      <div className="catalog__films-list">
-        {props.films.map((film) => (
-          <article className="small-film-card catalog__films-card" key={film.id}>
-            <FilmCard film={film} isActive={(film.id) === activeCardId} onMouseLeave={() => setActiveCardId(null)} onMouseOver={() => setActiveCardId((film.id))}/>
-          </article>
-        ))}
-      </div>
-      {props.children}
-    </>
+    <div className="catalog__films-list">
+      {sliceFilms.map((film: PreviewFilm) => (
+        <FilmCard
+          key={film.id}
+          id={film.id}
+          previewImage={film.previewImage}
+          name={film.name}
+          previewVideoLink={film.previewVideoLink}
+          isPlayingPreviewVideo={film.id === activeFilm}
+          onSmallFilmCardMouseOver={() => {
+            timer.current = setTimeout(() => {
+              setActiveFilm(film.id);
+            }, DELAY);
+          }}
+          onSmallFilmCardMouseOut={() => {
+            clearTimeout(timer.current);
+            setActiveFilm('');
+          }}
+        />
+      ))}
+    </div>
   );
 }

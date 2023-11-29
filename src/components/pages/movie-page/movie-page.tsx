@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus, FILM_SAME_GENRE_COUNT } from '../../../const';
 import { Review } from '../../../types/reviews';
-import Tabs from '../../films-tabs/films-tabs';
+import FilmTabs from '../../films-tabs/films-tabs';
 import useFilmById from '../../hooks/get-film-by-id';
 import LoadingPage from '../loading-page/loading-page';
 import { useAppSelector } from '../../hooks';
@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 import Catalog from '../../catalog/catalog';
 import { PreviewFilm } from '../../../types/preview-film';
 
-export default function FilmScreen() {
+export default function MoviePage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -76,7 +76,7 @@ export default function FilmScreen() {
                       <span className="film-card__count">9</span>
                     </button>
                     {authorizationStatus === AuthorizationStatus.Auth &&
-                    <Link to={`${AppRoute.FilmData}/${film.id}/review`} className="btn film-card__button">Add review</Link>}
+                    <Link to={`${AppRoute.Films}/${film.id}/review`} className="btn film-card__button">Add review</Link>}
                   </div>
                 </div>
               </div>
@@ -87,7 +87,7 @@ export default function FilmScreen() {
                 <div className="film-card__poster film-card__poster--big">
                   <img src={film.posterImage} alt={film.name} width="218" height="327" />
                 </div>
-                <Tabs film={film} reviews={filmReviews} />
+                <FilmTabs film={film} reviews={filmReviews} />
 
               </div>
             </div>
@@ -105,4 +105,3 @@ export default function FilmScreen() {
     </div>
   );
 }
-

@@ -1,43 +1,52 @@
-import {useEffect, useRef, MouseEventHandler, useState} from 'react';
-import { DELAY } from '../../const';
-import { useElementListener } from '../hooks/use-element-listener';
+import { useEffect, useRef, useState } from 'react';
 
 type VideoPlayerProps = {
-  preview: string;
-  poster: string;
   isPlaying: boolean;
-  alt: string;
-  onMouseOver: MouseEventHandler<HTMLElement>;
-  onMouseLeave: MouseEventHandler<HTMLElement>;
+  src: string;
+  poster: string;
 }
 
-function VideoPlayer(props: VideoPlayerProps): JSX.Element {
-
+export default function VideoPlayer({isPlaying, src, poster}: VideoPlayerProps) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  useElementListener('loadeddata', videoRef, () => setIsLoaded(true));
-  useEffect(() => {
+  const handleDataLoaded = () => {
+    setIsLoaded(true);
+  };
 
-    if (videoRef.current === null) {
+  useEffect(() => {
+    const playerElement = videoRef.current;
+
+    if (!playerElement) {
       return;
     }
 
-    setTimeout(() => {
-      if (videoRef.current && isLoaded) {
-        videoRef.current.play();
-      }
-    }, DELAY);
+    playerElement.addEventListener('loadeddata', handleDataLoaded);
 
-  }, [props.isPlaying, isLoaded]);
+    return () => {
+      playerElement.removeEventListener('loadeddata', handleDataLoaded);
+    };
+  }, []);
 
-  return (
-    <div onMouseOver={props.onMouseOver} onMouseLeave={props.onMouseLeave} className="small-film-card__image">
-      {props.isPlaying
-        ? <video src={props.preview} className="player__video" poster={props.poster} ref={videoRef} muted></video>
-        : <img src={props.poster} alt={props.alt} width="280" height="175" />}
-    </div>
+  useEffect(() => {
+    const playerElement = videoRef.current;
+
+    if (!isLoaded || !playerElement) {
+      return;
+    }
+
+    if (isPlaying) {
+      playerElement.play();
+      return;
+    }
+
+    playerElement.load();
+  }, [isPlaying, isLoaded]);
+
+  return(
+    <video poster={poster} width="280" height="175" ref={videoRef} muted>
+      <source src={src} />
+    </video>
   );
 }
-export default VideoPlayer;

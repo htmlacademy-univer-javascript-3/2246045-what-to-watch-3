@@ -11,11 +11,7 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 store.dispatch(fetchFilmsAction());
 store.dispatch(checkAuthAction());
-const appData: AppProps = {
-  promoFilmCard: promoFilm,
-  smallFilmCards: films.slice(1, films.length) as PreviewFilm[],
-  films: films,
-};
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -25,11 +21,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ToastContainer />
-      <App
-        promoFilmCard={appData.promoFilmCard}
-        smallFilmCards={appData.smallFilmCards}
-        films={appData.films}
-      />
+      <App />
     </Provider>
   </React.StrictMode>
 );
