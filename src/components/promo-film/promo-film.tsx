@@ -1,6 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import Header from '../header/header';
+import HeaderLogo from '../header-logo/header-logo';
+import UserBlock from '../user-block/user-block';
+import { useAppSelector } from '../hooks';
+import { getFavoriteFilmCount } from '../../store/my-list-data/selectors';
+import ChangeFavoriteStatusButton from '../change-favorite-film-button/change-favorite-film-button';
+import { getAuthorizationStatus } from '../../store/user-data/selectors';
 
 export type PromoFilmCardProps = {
   id: string;
@@ -9,10 +15,13 @@ export type PromoFilmCardProps = {
   backgroundImage: string;
   genre: string;
   released: number;
+  isFavorite: boolean;
 }
 
-export default function PromoFilmCard({id, posterImage, name, genre, released, backgroundImage}: PromoFilmCardProps) {
+export default function PromoFilmCard({id, posterImage, name, genre, released, backgroundImage, isFavorite}: PromoFilmCardProps) {
   const navigate = useNavigate();
+  const favoriteFilmCount = useAppSelector(getFavoriteFilmCount);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   return (
     <section className="film-card">
       <div className="film-card__bg">
@@ -21,7 +30,10 @@ export default function PromoFilmCard({id, posterImage, name, genre, released, b
 
       <h1 className="visually-hidden">WTW</h1>
 
-      <Header />
+      <header className="page-header film-card__head">
+        <HeaderLogo />
+        <UserBlock />
+      </header>
 
       <div className="film-card__wrap">
         <div className="film-card__info">
@@ -43,13 +55,12 @@ export default function PromoFilmCard({id, posterImage, name, genre, released, b
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list film-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
-                <span>My list</span>
-                <span className="film-card__count">9</span>
-              </button>
+              <ChangeFavoriteStatusButton
+                filmId={id}
+                isFavorite={isFavorite}
+                favoriteFilmCount={favoriteFilmCount}
+                authorizationStatus={authorizationStatus}
+              />
             </div>
           </div>
         </div>

@@ -1,38 +1,39 @@
-import Header from '../../header/header';
 import Footer from '../../footer/footer';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus, FILM_SAME_GENRE_COUNT } from '../../../const';
-import { Review } from '../../../types/reviews';
 import FilmTabs from '../../films-tabs/films-tabs';
 import useFilmById from '../../hooks/get-film-by-id';
 import LoadingPage from '../loading-page/loading-page';
-import { useAppSelector } from '../../hooks';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchFilmReviewsAction, fetchSimilarFilmsAction } from '../../../store/api-actions';
-import { store } from '../../../store';
 import { useEffect } from 'react';
 import Catalog from '../../catalog/catalog';
-import { PreviewFilm } from '../../../types/preview-film';
+import { getCurrentSimilarFilms, getFilmDataLoading, getSimilarFilmsLoading } from '../../../store/film-data/selectors';
+import { getCurrentFilmReviews, getFilmReviewsLoading } from '../../../store/review-data/selectors';
+import { getAuthorizationStatus } from '../../../store/user-data/selectors';
+import HeaderLogo from '../../header-logo/header-logo';
+import UserBlock from '../../user-block/user-block';
+import { getFavoriteFilmCount } from '../../../store/my-list-data/selectors';
+import ChangeFavoriteStatusButton from '../../change-favorite-film-button/change-favorite-film-button';
 
 export default function MoviePage() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const film = useFilmById();
-  const isFilmDataLoading = useAppSelector((state) => state.isFilmDataLoading);
-
-  const similarFilms = useAppSelector((state) => state.currentSimilarFilms);
-  const isSimilarFilmsDataLoading = useAppSelector((state) => state.isSimilarFilmsLoading);
-
-  const filmReviews = useAppSelector((state) => state.currentFilmReviews) as Review[];
-
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isFilmDataLoading = useAppSelector(getFilmDataLoading);
+  const similarFilms = useAppSelector(getCurrentSimilarFilms);
+  const isSimilarFilmsDataLoading = useAppSelector(getSimilarFilmsLoading);
+  const filmReviews = useAppSelector(getCurrentFilmReviews);
+  const isFilmReviewsDataLoading = useAppSelector(getFilmReviewsLoading);
+  const favoriteFilmCount = useAppSelector(getFavoriteFilmCount);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   useEffect(() => {
     if (film) {
-      store.dispatch(fetchSimilarFilmsAction({filmId: film.id}));
-      store.dispatch(fetchFilmReviewsAction({filmId: film.id}));
+      dispatch(fetchFilmReviewsAction({filmId: film.id}));
+      dispatch(fetchSimilarFilmsAction({filmId: film.id}));
     }
   }, [dispatch, film]);
 
@@ -51,7 +52,10 @@ export default function MoviePage() {
 
               <h1 className="visually-hidden">WTW</h1>
 
-              <Header />
+              <header className="page-header film-card__head">
+                <HeaderLogo />
+                <UserBlock />
+              </header>
 
               <div className="film-card__wrap">
                 <div className="film-card__desc">
@@ -68,13 +72,12 @@ export default function MoviePage() {
                       </svg>
                       <span>Play</span>
                     </button>
-                    <button className="btn btn--list film-card__button" type="button">
-                      <svg viewBox="0 0 19 20" width="19" height="20">
-                        <use xlinkHref="#add"></use>
-                      </svg>
-                      <span>My list</span>
-                      <span className="film-card__count">9</span>
-                    </button>
+                    <ChangeFavoriteStatusButton
+                      filmId={film.id}
+                      isFavorite={film.isFavorite}
+                      favoriteFilmCount={favoriteFilmCount}
+                      authorizationStatus={authorizationStatus}
+                    />
                     {authorizationStatus === AuthorizationStatus.Auth &&
                     <Link to={`${AppRoute.Films}/${film.id}/review`} className="btn film-card__button">Add review</Link>}
                   </div>
@@ -87,7 +90,7 @@ export default function MoviePage() {
                 <div className="film-card__poster film-card__poster--big">
                   <img src={film.posterImage} alt={film.name} width="218" height="327" />
                 </div>
-                <FilmTabs film={film} reviews={filmReviews} />
+                <FilmTabs film={film} reviews={isFilmReviewsDataLoading ? [] : filmReviews} />
 
               </div>
             </div>
@@ -97,7 +100,7 @@ export default function MoviePage() {
             {similarFilms?.length !== 0 && !isSimilarFilmsDataLoading &&
               <section className="catalog catalog--like-this">
                 <h2 className="catalog__title">More like this</h2>
-                <Catalog films={similarFilms as PreviewFilm[]} filmCount={FILM_SAME_GENRE_COUNT} />
+                <Catalog films={similarFilms} filmCount={FILM_SAME_GENRE_COUNT} />
               </section>}
             <Footer />
           </div>

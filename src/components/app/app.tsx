@@ -6,24 +6,32 @@ import AddReviewPage from '../pages/add-review/add-review';
 import PlayerScreen from '../pages/player/player';
 import Error from '../pages/404/error';
 import PrivateRoute from '../private-route/private-rout';
-import { Film } from '../../types/films';
-import { PromoFilmCardProps } from '../promo-film/promo-film';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
-export type AppProps = {
-  promoFilmCard: PromoFilmCardProps;
-  films: Film[];
-}
+import { getFilmsDataLoading } from '../../store/film-data/selectors';
+import { getAuthorizationStatus } from '../../store/user-data/selectors';
+import { useAppSelector } from '../hooks';
+import LoadingPage from '../../components/pages/loading-page/loading-page';
+import HistoryRouter from '../history-route/history-routr';
+import browserHistory from '../../browser-history';
 
-export default function App({promoFilmCard, films}: AppProps) {
+export default function App() {
+  const isFilmsDataLoading = useAppSelector(getFilmsDataLoading);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
+  if (isFilmsDataLoading) {
+    return (
+      <LoadingPage />
+    );
+  }
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <HistoryRouter history={browserHistory}>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainScreen promoFilmCard={promoFilmCard}/>}
+            element={<MainScreen />}
           />
           <Route
             path={AppRoute.SignIn}
@@ -33,7 +41,7 @@ export default function App({promoFilmCard, films}: AppProps) {
             path={AppRoute.MyList}
             element={
               <PrivateRoute
-                authorizationStatus={AuthorizationStatus.NoAuth}
+                authorizationStatus={authorizationStatus}
               >
                 <MyListPage />
               </PrivateRoute>
@@ -48,14 +56,14 @@ export default function App({promoFilmCard, films}: AppProps) {
           </Route>
           <Route path={AppRoute.Player}>
             <Route index element={<Error />} />
-            <Route path=':id' element={<PlayerScreen films={films}/>} />
+            <Route path=':id' element={<PlayerScreen />} />
           </Route>
           <Route
             path="*"
             element={<Error />}
           />
         </Routes>
-      </BrowserRouter>
+      </HistoryRouter>
     </HelmetProvider>
   );
 }
