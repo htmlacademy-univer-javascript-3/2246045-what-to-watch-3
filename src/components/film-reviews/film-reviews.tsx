@@ -1,30 +1,24 @@
-import { Reviews } from '../../mocks/reviews';
+import ReviewCard from '../review-card/review-card';
+import { Review } from '../../types/reviews';
 
 type FilmReviewsProps = {
-  Review: Reviews | undefined;
+  reviews: Review[];
 }
 
-function FilmReviewsList(props: FilmReviewsProps): JSX.Element {
-
+export default function FilmReviews({reviews}: FilmReviewsProps) {
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">
-        {props.Review?.map((review) => (
-          <div className="review" key={review.id}>
-            <blockquote className="review__quote">
-              <p className="review__text">{review.comment}</p>
-
-              <footer className="review__details">
-                <cite className="review__author">{review.user}</cite>
-                <time className="review__date" dateTime="2016-12-24">{review.date}</time>
-              </footer>
-            </blockquote>
-
-            <div className="review__rating">{review.rating}</div>
-          </div>))}
-
+        {reviews.map((review: Review) => (
+          <ReviewCard
+            key={review.id}
+            date={review.date}
+            comment={review.comment}
+            user={review.user}
+            rating={review.rating}
+          />
+        ))}
       </div>
     </div>
   );
 }
-export default FilmReviewsList;

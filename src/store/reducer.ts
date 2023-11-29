@@ -1,45 +1,70 @@
-import {createReducer} from '@reduxjs/toolkit';
-import { Films } from '../components/pages/main-page/film-list-props';
-import { Film } from '../mocks/films';
-import { Review } from '../mocks/reviews';
-import {loadFilms, requireAuthorization, setFilmsDataLoadingStatus, setGenre} from './action';
-import {AuthorizationStatus, DEFAULT_FILTER} from '../const';
+import { createReducer } from '@reduxjs/toolkit';
+import { AuthorizationStatus, DEFAULT_FILTER } from '../const';
+import {
+  changeActiveGenre,
+  loadFilm,
+  loadFilmReviews,
+  loadFilms,
+  loadSimilarFilms,
+  requireAuthorization,
+  setFilmDataLoadingStatus,
+  setFilmsDataLoadingStatus,
+  setSimilarFilmsDataLoadingStatus } from './action';
+import { PreviewFilm } from '../types/preview-film';
+import { Film } from '../types/films';
+import { Review } from '../types/reviews';
 
 type InitialState = {
   genre: string;
-  filmsList: Films;
-  films: Film[];
-  commentsList: Review[];
+  films: PreviewFilm[];
   isFilmsDataLoading: boolean;
   authorizationStatus: AuthorizationStatus;
-  avatarUrl: string;
+  currentFilm?: Film;
+  isFilmDataLoading: boolean;
+  currentSimilarFilms?: PreviewFilm[];
+  isSimilarFilmsLoading: boolean;
+  currentFilmReviews?: Review[];
 }
 
 const initialState: InitialState = {
   genre: DEFAULT_FILTER,
-  filmsList: [],
-  films:[],
-  commentsList: [],
+  films: [],
   isFilmsDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
-  avatarUrl: '',
+  currentFilm: undefined,
+  isFilmDataLoading: false,
+  currentSimilarFilms: [],
+  isSimilarFilmsLoading: false,
+  currentFilmReviews: [],
 };
 
-const reducer = createReducer(initialState, (builder) => {
+export const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(setGenre, (state, action) => {
-      const {genre} = action.payload;
-      state.genre = genre;
+    .addCase(changeActiveGenre, (state, action) => {
+      state.genre = action.payload.genre;
     })
     .addCase(loadFilms, (state, action) => {
-      state.filmsList = action.payload;
+      state.films = action.payload;
     })
     .addCase(setFilmsDataLoadingStatus, (state, action) => {
       state.isFilmsDataLoading = action.payload;
     })
+    .addCase(setFilmDataLoadingStatus, (state, action) => {
+      state.isFilmDataLoading = action.payload;
+    })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(loadFilm, (state, action) => {
+      state.currentFilm = action.payload;
+    })
+    .addCase(setSimilarFilmsDataLoadingStatus, (state, action) => {
+      state.isSimilarFilmsLoading = action.payload;
+    })
+    .addCase(loadSimilarFilms, (state, action) => {
+      state.currentSimilarFilms = action.payload;
+    })
+    .addCase(loadFilmReviews, (state, action) => {
+      state.currentFilmReviews = action.payload;
     });
 });
-
-export {reducer};

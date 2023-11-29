@@ -1,50 +1,71 @@
-import {useState} from 'react';
-import { Film } from '../../mocks/films';
-import { Reviews } from '../../mocks/reviews';
-import { Link } from 'react-router-dom';
-import { MoviePageState } from '../../const';
-import FilmDetailsList from '../../components/film-details/film-details';
-import FilmReviewsList from '../../components/film-reviews/film-reviews';
-import FilmOverviewList from '../../components/film-overview/film-overview';
+import cn from 'classnames';
+import { useState } from 'react';
+import { MoviePageState, MoviePageStateNameInterface } from '../../const';
+import { Film } from '../../types/films';
+import FilmOverview from '../film-overview/film-overview';
+import FilmDetails from '../film-details/film-details';
+import FilmReviews from '../film-reviews/film-reviews';
+import { Review } from '../../types/reviews';
 
-type FilmTabsProps = {
-  films: Film | undefined;
-  Review: Reviews | undefined;
+type TabsProps = {
+  film: Film;
+  reviews: Review[];
 }
-
-function FilmTabs(props: FilmTabsProps): JSX.Element {
-
-  const [tab, setActiveTab] = useState(MoviePageState.Overview);
-
-  function setPageState () {
-    switch (tab) {
-      case MoviePageState.Overview:
-        return <FilmOverviewList films={props.films}/>;
-      case MoviePageState.Reviews:
-        return <FilmReviewsList Review={props.Review}/>;
-      case MoviePageState.Details:
-        return <FilmDetailsList films={props.films}/>;
-    }
+const getFilmActiveTabInfo = (activeTab: string, film: Film, reviews: Review[]) => {
+  switch(activeTab) {
+    case MoviePageState.Overview:
+      return (
+        <FilmOverview
+          description={film.description}
+          rating={film.rating}
+          scoresCount={film.scoresCount}
+          director={film.director}
+          starring={film.starring}
+        />);
+    case MoviePageState.Details:
+      return (
+        <FilmDetails
+          director={film.director}
+          starring={film.starring}
+          genre={film.genre}
+          runTime={film.runTime}
+          released={film.released}
+        />);
+    case MoviePageState.Reviews:
+      return(
+        <FilmReviews reviews={reviews} />
+      );
+    default:
+      break;
   }
-
-  return (
+};
+export default function Tabs({film, reviews}: TabsProps) {
+  const [activeTab, setActiveTab] = useState(MoviePageState.Overview);
+  const handlerOverviewLinkClick = () => {
+    setActiveTab(MoviePageState.Overview);
+  };
+  const handlerDetailsLinkClick = () => {
+    setActiveTab(MoviePageState.Details);
+  };
+  const handlerReviewsLinkClick = () => {
+    setActiveTab(MoviePageState.Reviews);
+  };
+  return(
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
-          <li className="film-nav__item ">
-            <Link className="film-nav__link" onClick={() => setActiveTab(MoviePageState.Overview)} to=''>Overview</Link>
+          <li className={cn('film-nav__item', {'film-nav__item--active': activeTab === MoviePageState.Overview})}>
+            <a className="film-nav__link" onClick={handlerOverviewLinkClick}>{MoviePageStateNameInterface[MoviePageState.Overview]}</a>
           </li>
-          <li className="film-nav__item">
-            <Link className="film-nav__link" onClick={() => setActiveTab(MoviePageState.Details)} to=''>Details</Link>
+          <li className={cn('film-nav__item', {'film-nav__item--active': activeTab === MoviePageState.Details})}>
+            <a className="film-nav__link" onClick={handlerDetailsLinkClick}>{MoviePageStateNameInterface[MoviePageState.Details]}</a>
           </li>
-          <li className="film-nav__item">
-            <Link className="film-nav__link" onClick={() => setActiveTab(MoviePageState.Reviews)} to=''>Reviews</Link>
+          <li className={cn('film-nav__item', {'film-nav__item--active': activeTab === MoviePageState.Reviews})}>
+            <a className="film-nav__link" onClick={handlerReviewsLinkClick}>{MoviePageStateNameInterface[MoviePageState.Reviews]}</a>
           </li>
         </ul>
       </nav>
-      {setPageState()}
+      {getFilmActiveTabInfo(activeTab, film, reviews)}
     </div>
   );
 }
-
-export default FilmTabs;

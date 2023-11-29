@@ -1,28 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/app/app';
-import { PromoFilm } from './mocks/promo.ts';
-import { store } from './store/index.ts';
+import App, { AppProps } from './components/app/app';
+import { promoFilm } from './mocks/promo';
 import { Provider } from 'react-redux';
+import { store } from './store';
 import { checkAuthAction, fetchFilmsAction } from './store/api-actions';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {ToastContainer} from 'react-toastify';
+store.dispatch(fetchFilmsAction());
+store.dispatch(checkAuthAction());
+const appData: AppProps = {
+  promoFilmCard: promoFilm,
+  films: [],
+};
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-store.dispatch(fetchFilmsAction());
-store.dispatch(checkAuthAction());
-
 root.render(
   <React.StrictMode>
-    <Provider store = {store}>
+    <Provider store={store}>
       <ToastContainer />
-      <App picture={PromoFilm.Picture}
-        title={PromoFilm.Title}
-        genre={PromoFilm.Genre}
-        year={PromoFilm.Year}
+      <App
+        promoFilmCard={appData.promoFilmCard}
+        films={appData.films}
       />
     </Provider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
