@@ -1,6 +1,7 @@
 import cn from 'classnames';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { changeActiveGenre } from '../../store/action';
+import { changeActiveGenre } from '../../store/genres-data/genres-data';
+import { getActiveGenre } from '../../store/genres-data/selectors';
 
 type GenreListProps = {
   genres: string[];
@@ -8,7 +9,7 @@ type GenreListProps = {
 }
 
 export default function GenreList({genres, onGenreClick}: GenreListProps) {
-  const activeGenre = useAppSelector((state) => state.genre);
+  const activeGenre = useAppSelector(getActiveGenre);
   const dispatch = useAppDispatch();
 
   return(
@@ -17,7 +18,7 @@ export default function GenreList({genres, onGenreClick}: GenreListProps) {
         <li key={genre} className={cn('catalog__genres-item', {'catalog__genres-item--active': activeGenre === genre})}>
           <a onClick={() => {
             onGenreClick();
-            dispatch(changeActiveGenre({ genre: genre }));
+            dispatch(changeActiveGenre(genre));
           }} className="catalog__genres-link"
           >{genre}
           </a>

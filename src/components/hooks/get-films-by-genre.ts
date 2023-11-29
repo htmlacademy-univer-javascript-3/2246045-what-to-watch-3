@@ -1,5 +1,5 @@
 import { useAppSelector } from '.';
-import { PreviewFilm } from '../../types/preview-film';
+import { getFilms } from '../../store/film-data/selectors';
 import { filterFilms } from '../../utils/filter-by-genre';
 
-export const useFilmsByGenre = (genre: string) => useAppSelector((state) => filterFilms(state.films as PreviewFilm[], genre));
+export const useFilmsByGenre = (genre: string) => filterFilms(useAppSelector(getFilms), genre);
