@@ -9,26 +9,22 @@ import PrivateRoute from '../private-route/private-rout';
 import { Film } from '../../types/films';
 import { PromoFilmCardProps } from '../promo-film/promo-film';
 import { PreviewFilm } from '../../types/preview-film';
-import { useAppSelector } from '../hooks';
-import LoadingScreen from '../pages/loading-page/loading-page';
-import HistoryRouter from '../history-route/history-routr';
-import browserHistory from '../../browser-history';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 export type AppProps = {
   promoFilmCard: PromoFilmCardProps;
   films: Film[];
+  smallFilmCards: PreviewFilm[];
 }
 
-export default function App() {
-  return (
+export default function App({promoFilmCard, smallFilmCards, films}: AppProps) {  return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<MainScreen />}
+            element={<MainScreen promoFilmCard={promoFilmCard}/>}
           />
           <Route
             path={AppRoute.SignIn}
@@ -53,7 +49,7 @@ export default function App() {
           </Route>
           <Route path={AppRoute.Player}>
             <Route index element={<Error />} />
-            <Route path=':id' element={<PlayerScreen />} />
+            <Route path=':id' element={<PlayerScreen films={films}/>} />
           </Route>
           <Route
             path="*"

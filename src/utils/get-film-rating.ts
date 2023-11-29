@@ -10,4 +10,3 @@ export const getFilmRating = (rating: number) => {
     }
     return 'Awesome';
   };
-  
