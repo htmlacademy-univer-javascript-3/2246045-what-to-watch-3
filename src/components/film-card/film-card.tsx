@@ -11,7 +11,7 @@ type FilmCardProps = {
   onMouseOver: MouseEventHandler<HTMLElement>;
 }
 
-function FilmCard(props: FilmCardProps): JSX.Element{
+export default function FilmCard(props: FilmCardProps): JSX.Element{
   return (
     <>
       <VideoPlayer preview={props.film.previewVideoLink} poster={props.film.previewImage} alt={props.film.name}
@@ -23,4 +23,3 @@ function FilmCard(props: FilmCardProps): JSX.Element{
     </>
   );
 }
-export default FilmCard;

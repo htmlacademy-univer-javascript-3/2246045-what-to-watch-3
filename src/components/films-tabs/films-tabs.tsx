@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import { Film } from '../../mocks/films';
-import { Reviews } from '../../mocks/reviews';
+import { Film } from '../../types/films';
+import { Reviews } from '../../types/reviews';
 import { Link } from 'react-router-dom';
 import { MoviePageState } from '../../const';
 import FilmDetailsList from '../../components/film-details/film-details';

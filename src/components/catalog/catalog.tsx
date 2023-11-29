@@ -7,7 +7,8 @@ type FilmsCatalogProps = PropsWithChildren<{
   films: Films;
 }>
 
-function Catalog(props: FilmsCatalogProps): JSX.Element {
+
+export default function Catalog(props: FilmsCatalogProps): JSX.Element {
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
   return (
     <>
@@ -22,5 +23,3 @@ function Catalog(props: FilmsCatalogProps): JSX.Element {
     </>
   );
 }
-
-export default Catalog;

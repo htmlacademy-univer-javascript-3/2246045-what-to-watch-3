@@ -1,7 +1,7 @@
 import Footer from '../../footer/footer';
 import Header from '../../header/header';
 
-function MyList(): JSX.Element {
+function MyListPage(): JSX.Element {
   return (
     <main>
       <div className="user-page">
@@ -102,4 +102,4 @@ function MyList(): JSX.Element {
   );
 }
 
-export default MyList;
+export default MyListPage;

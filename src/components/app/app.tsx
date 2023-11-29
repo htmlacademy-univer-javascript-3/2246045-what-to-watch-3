@@ -1,68 +1,69 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../../const';
-import MainPage from '../pages/main-page/main-page.tsx';
-import MoviePage from '../pages/movie-page/movie-page.tsx';
-import MyList from '../pages/my-list/my-list.tsx';
-import FilmPlayer from '../pages/player/player.tsx';
-import SignIn from '../pages/sign-in/sign-in.tsx';
-import Error from '../pages/404/error.tsx';
-import PrivateRoute from '../private-route/private-rout.tsx';
-import AddReview from '../pages/add-review/add-review.tsx';
+import MainScreen from '../pages/main-page/main-page';
+import SignInScreen from '../pages/sign-in/sign-in';
+import MyListPage from '../pages/my-list/my-list';
+import FilmScreen from '../pages/movie-page/movie-page';
+import AddReviewScreen from '../pages/add-review/add-review';
+import PlayerScreen from '../pages/player/player';
+import Error from '../pages/404/error';
+import PrivateRoute from '../private-route/private-rout';
+import { Film } from '../../types/films';
+import { PromoFilmCardProps } from '../promo-film-card/promo-film-card';
+import { PreviewFilm } from '../../types/preview-film';
 import { useAppSelector } from '../hooks';
-import LoadingPage from '../pages/loading-page/loading-page.tsx';
-
-type AppProps = {
-  picture: string;
-  title: string;
-  genre: string;
-  year: number;
+import LoadingScreen from '../pages/loading-page/loading-page';
+import HistoryRouter from '../history-route/history-routr';
+import browserHistory from '../../browser-history';
+import { HelmetProvider } from 'react-helmet-async';
+import { Route, Routes } from 'react-router-dom';
+import { AppRoute } from '../../const';
+export type AppProps = {
+  promoFilmCard: PromoFilmCardProps;
+  smallFilmCards: PreviewFilm[];
+  films: Film[];
 }
 
-function App(props: AppProps): JSX.Element {
-  const filmsList = useAppSelector((state) => state.filmsList);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const films = useAppSelector((state) => state.films);
+export default function App({promoFilmCard, smallFilmCards, films}: AppProps) {
   const isFilmsDataLoading = useAppSelector((state) => state.isFilmsDataLoading);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
-  if (authorizationStatus === AuthorizationStatus.Unknown || isFilmsDataLoading) {
+  if (isFilmsDataLoading) {
     return (
-      <LoadingPage/>
+      <LoadingScreen />
     );
   }
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={AppRoute.Main} element={<MainPage picture={props.picture} title={props.title} genre={props.genre} year={props.year} films={filmsList} />} />
-        <Route
-          path={AppRoute.MyList}
-          element={
-            <PrivateRoute authorizationStatus={authorizationStatus}>
-              <MyList />
-            </PrivateRoute>
-          }
-        />
-        <Route path={AppRoute.Films}>
-          <Route path={AppRoute.FilmId}>
-            <Route index element={<MoviePage filmsList={filmsList} films={films}/>}/>
-            <Route path={AppRoute.AddReview}
-              element={
-                <PrivateRoute authorizationStatus={authorizationStatus}>
-                  <AddReview films={films}/>
-                </PrivateRoute>
-              }
-            />
+    <HelmetProvider>
+      <HistoryRouter history={browserHistory}>
+        <Routes>
+          <Route
+            path={AppRoute.Main}
+            element={<MainScreen promoFilmCard={promoFilmCard} />}
+          />
+          <Route
+            path={AppRoute.SignIn}
+            element={<SignInScreen />}
+          />
+          <Route
+            path={AppRoute.MyList}
+            element={
+	@@ -59,8 +57,8 @@
+          <Route path={AppRoute.FilmData}>
+            <Route index element={<Error />} />
+            <Route path=':id'>
+              <Route index element={<FilmScreen />} />
+              <Route path='review' element={<AddReviewScreen />} />
+            </Route>
           </Route>
-        </Route>
-        <Route path={AppRoute.Player}>
-          <Route path={AppRoute.FilmId}>
-            <Route index element={<FilmPlayer films={films}/>}/>
+          <Route path={AppRoute.Player}>
+            <Route index element={<Error />} />
+            <Route path=':id' element={<PlayerScreen films={films} />} />
           </Route>
-        </Route>
-        <Route path={AppRoute.SignIn} element={<SignIn/>}/>
-        <Route path="*" element={<Error/>}/>
-      </Routes>
-    </BrowserRouter>
+          <Route
+            path="*"
+            element={<Error />}
+          />
+        </Routes>
+      </HistoryRouter>
+    </HelmetProvider>
   );
 }
-
-export default App;

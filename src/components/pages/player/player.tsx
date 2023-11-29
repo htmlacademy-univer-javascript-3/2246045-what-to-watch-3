@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { AppRoute } from '../../../const';
-import {Films} from '../../../mocks/films';
+import {Films} from '../../../types/films';
 
 type FilmPlayerProps = {
   films: Films;

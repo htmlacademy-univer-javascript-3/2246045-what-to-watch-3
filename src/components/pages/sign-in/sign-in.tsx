@@ -4,7 +4,7 @@ import { AppRoute } from '../../../const';
 import { useRef, FormEvent } from 'react';
 import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../../store/api-actions';
-import { AuthData } from '../../../mocks/auth-data';
+import { AuthData } from '../../../types/auth-data';
 import { useNavigate } from 'react-router-dom';
 
 function SignIn(): JSX.Element {

@@ -1,4 +1,4 @@
-import { Reviews } from '../../mocks/reviews';
+import { Reviews } from '../../types/reviews';
 
 type FilmReviewsProps = {
   Review: Reviews | undefined;

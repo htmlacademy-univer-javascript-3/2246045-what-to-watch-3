@@ -1,40 +1,80 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-function AddReviewForm(): JSX.Element {
-  const starCount = 10;
-  const ratingStars = [...Array(starCount) as [number]];
-  const [formData, setFormData] = useState({
-    starId: '',
-    text: '',
-  });
+import { RATING_STAR_COUNT } from '../../const';
+import { useAppDispatch } from '../hooks';
+import { postReview } from '../../store/api-actions';
 
-  const onChange = ({target}: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
-    setFormData({...formData, [target.name]: target.value});
+type FormReviewProps = {
+  filmId: string;
+}
+
+export default function AddReviewForm({filmId}: FormReviewProps) {
+  const dispatch = useAppDispatch();
+  const [rating, setRating] = useState('');
+  const [reviewText, setReviewText] = useState('');
+
+  const handleRatingChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    setRating(evt.target.value);
+  };
+  const handleReviewChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
+    setReviewText(evt.target.value);
   };
 
-  const formSubmitHandler = (evt: FormEvent<HTMLFormElement>) => {
+  function handleFormSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
-  };
+    setRating(rating);
+    setReviewText(reviewText);
+    dispatch(
+      postReview({
+        id: filmId,
+        comment: reviewText,
+        rating: Number(rating),
+      })
+    );
+  }
 
   return (
     <div className="add-review">
-      <form action="#" className="add-review__form" onSubmit={formSubmitHandler}>
-        <div className="rating__stars">
-          {ratingStars.map((_, index) => (
-            <>
-              <input className="rating__input" id={`star-${starCount - index}`} type="radio" name="starId" value={starCount - index} onChange={onChange}/>
-              <label className="rating__label" htmlFor={`star-${starCount - index}`}>Rating {starCount - index}</label>
-            </>
-          ))}
+      <form action="#" className="add-review__form" onSubmit={handleFormSubmit}>
+        <div className="rating">
+          <div className="rating__stars">
+            {Array.from({ length: RATING_STAR_COUNT }, (_, i) => i + 1)
+              .reverse()
+              .map((number) => [
+                <input
+                  key={`input-star-${number}`}
+                  className="rating__input"
+                  onChange={handleRatingChange}
+                  id={`star-${number}`}
+                  type="radio"
+                  name="rating"
+                  value={`${number}`}
+                  checked={`${number}` === rating}
+                />,
+                <label
+                  key={`label-star-${number}`}
+                  className="rating__label"
+                  htmlFor={`star-${number}`}
+                >
+                  Rating {number}
+                </label>
+              ])}
+          </div>
         </div>
 
         <div className="add-review__text">
-          <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
+          <textarea
+            value={reviewText}
+            className="add-review__textarea"
+            name="review-text"
+            id="review-text"
+            placeholder="Review text"
+            onChange={handleReviewChange}
+          >
+          </textarea>
           <div className="add-review__submit">
             <button className="add-review__btn" type="submit">Post</button>
           </div>
         </div>
       </form>
-    </div>
-  );
+    </div>);
 }
-export default AddReviewForm;
