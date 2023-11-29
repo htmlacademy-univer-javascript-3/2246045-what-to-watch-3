@@ -1,5 +1,4 @@
 import PromoFilmCard from '../../promo-film/promo-film';
-import { PromoFilmCardProps } from '../../promo-film/promo-film';
 import Footer from '../../footer/footer';
 import { Helmet } from 'react-helmet-async';
 import Catalog from '../../catalog/catalog';

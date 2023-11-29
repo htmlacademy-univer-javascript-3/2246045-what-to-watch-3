@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import Header from '../header/header';
 import HeaderLogo from '../header-logo/header-logo';
 import UserBlock from '../user-block/user-block';
 import { useAppSelector } from '../hooks';

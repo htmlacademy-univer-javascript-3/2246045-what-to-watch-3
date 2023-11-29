@@ -1,6 +1,5 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../../const';
-import {Films} from '../../../types/films';
 import { Helmet } from 'react-helmet-async';
 import { useAppSelector } from '../../hooks';
 import { getFilmDataLoading } from '../../../store/film-data/selectors';
