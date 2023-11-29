@@ -48,8 +48,7 @@ export default function MainPage() {
           released={promoFilmCard.released}
           backgroundImage={promoFilmCard.backgroundImage}
           isFavorite={promoFilmCard.isFavorite}
-        />
-      }
+        />}
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
