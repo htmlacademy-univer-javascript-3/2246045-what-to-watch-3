@@ -66,4 +66,4 @@ export const films = [
     released: 2018,
     isFavorite: false
   }
-]
+];
