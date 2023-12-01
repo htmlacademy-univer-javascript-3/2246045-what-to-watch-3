@@ -49,6 +49,7 @@ export default function AddReviewForm({filmId}: FormReviewProps) {
                   name="rating"
                   value={`${number}`}
                   checked={`${number}` === rating}
+                  required
                 />,
                 <label
                   key={`label-star-${number}`}
@@ -69,6 +70,7 @@ export default function AddReviewForm({filmId}: FormReviewProps) {
             id="review-text"
             placeholder="Review text"
             onChange={handleReviewChange}
+            required
           >
           </textarea>
           <div className="add-review__submit">
@@ -76,5 +78,6 @@ export default function AddReviewForm({filmId}: FormReviewProps) {
           </div>
         </div>
       </form>
-    </div>);
+    </div>
+  );
 }

@@ -11,10 +11,10 @@ import { useEffect } from 'react';
 import Catalog from '../../catalog/catalog';
 import { getCurrentSimilarFilms, getFilmDataLoading, getSimilarFilmsLoading } from '../../../store/film-data/selectors';
 import { getCurrentFilmReviews, getFilmReviewsLoading } from '../../../store/review-data/selectors';
-import { getAuthorizationStatus } from '../../../store/user-data/selectors';
+import { getAuthorizationStatus } from '../../../store/user-process/selectors';
 import HeaderLogo from '../../header-logo/header-logo';
 import UserBlock from '../../user-block/user-block';
-import { getFavoriteFilmCount } from '../../../store/my-list-data/selectors';
+import { getFavoriteFilmCount } from '../../../store/my-list-process/selectors';
 import ChangeFavoriteStatusButton from '../../change-favorite-film-button/change-favorite-film-button';
 
 export default function MoviePage() {

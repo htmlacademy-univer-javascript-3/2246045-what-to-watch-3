@@ -10,7 +10,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Route, Routes } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { getFilmsDataLoading } from '../../store/film-data/selectors';
-import { getAuthorizationStatus } from '../../store/user-data/selectors';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { useAppSelector } from '../hooks';
 import LoadingPage from '../../components/pages/loading-page/loading-page';
 import HistoryRouter from '../history-route/history-routr';

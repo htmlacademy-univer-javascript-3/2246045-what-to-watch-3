@@ -4,7 +4,7 @@ import Catalog from '../../catalog/catalog';
 import HeaderLogo from '../../header-logo/header-logo';
 import UserBlock from '../../user-block/user-block';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getFavoriteFilmCount, getFavoriteFilms, getFavoriteFilmsDataLoading } from '../../../store/my-list-data/selectors';
+import { getFavoriteFilmCount, getFavoriteFilms, getFavoriteFilmsDataLoading } from '../../../store/my-list-process/selectors';
 import LoadingPage from '../loading-page/loading-page';
 import { useEffect } from 'react';
 import { fetchFavoriteFilmsAction } from '../../../store/api-actions';
