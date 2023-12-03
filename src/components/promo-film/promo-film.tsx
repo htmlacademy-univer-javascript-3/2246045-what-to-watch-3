@@ -3,9 +3,9 @@ import { AppRoute } from '../../const';
 import HeaderLogo from '../header-logo/header-logo';
 import UserBlock from '../user-block/user-block';
 import { useAppSelector } from '../hooks';
-import { getFavoriteFilmCount } from '../../store/my-list-data/selectors';
+import { getFavoriteFilmCount } from '../../store/my-list-process/selectors';
 import ChangeFavoriteStatusButton from '../change-favorite-film-button/change-favorite-film-button';
-import { getAuthorizationStatus } from '../../store/user-data/selectors';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 export type PromoFilmCardProps = {
   id: string;
