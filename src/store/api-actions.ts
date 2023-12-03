@@ -129,11 +129,11 @@ export const logoutAction = createAsyncThunk<void, undefined, {
 );
 
 export const postReview = createAsyncThunk<void, ReviewAddingData,{
-  dispatch: AppDispatch; 
-  extra: AxiosInstance }
+  dispatch: AppDispatch;
+  extra: AxiosInstance;}
 >(
-  'review/post', 
+  'review/post',
   async ({ id: filmId, comment, rating }, {dispatch, extra: api }) => {
-  await api.post<ReviewAddingData>(`${APIRoute.Comments}/${filmId}`, { comment, rating });
-  dispatch(redirectToRoute(`${APIRoute.Films}/${filmId}`));
+    await api.post<ReviewAddingData>(`${APIRoute.Comments}/${filmId}`, { comment, rating });
+    dispatch(redirectToRoute(`${APIRoute.Films}/${filmId}`));
 });

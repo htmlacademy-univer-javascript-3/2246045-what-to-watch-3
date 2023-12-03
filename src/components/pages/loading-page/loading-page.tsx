@@ -1,4 +1,4 @@
-import ReactLoading from "react-loading";
+import ReactLoading from 'react-loading';
 import styles from './loading.module.css';
 
 export default function LoadingPage(): JSX.Element {
