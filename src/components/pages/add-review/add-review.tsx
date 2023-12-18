@@ -7,11 +7,11 @@ import useFilmById from '../../hooks/get-film-by-id';
 import LoadingPage from '../loading-page/loading-page';
 import UserBlock from '../../user-block/user-block';
 import HeaderLogo from '../../header-logo/header-logo';
-import { getFilmDataLoading } from '../../../store/film-data/selectors';
+import { getCurrentFilmLoading } from '../../../store/film-data/selectors';
 
 export default function AddReviewScreen() {
   const film = useFilmById();
-  const isFilmDataLoading = useAppSelector(getFilmDataLoading);
+  const isFilmDataLoading = useAppSelector(getCurrentFilmLoading);
 
   return (
     <section className="film-card film-card--full">

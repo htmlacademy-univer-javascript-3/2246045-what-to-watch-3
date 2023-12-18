@@ -19,7 +19,13 @@ export default function FilmDetails({director, starring, runTime, genre, release
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
           <span className="film-card__details-value">
-            {starring.join(',\n')}
+            {starring.map((star, index) =>
+              (
+                index === starring.length - 1
+                  ? <span key={`id-${star}`} data-testid={star}>{star}</span>
+                  : <span key={`id-${star}`} data-testid={star}>{star}, <br/></span>
+              )
+            )}
           </span>
         </p>
       </div>

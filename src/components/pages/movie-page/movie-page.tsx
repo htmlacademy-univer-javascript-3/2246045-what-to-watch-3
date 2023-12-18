@@ -9,8 +9,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchFilmReviewsAction, fetchSimilarFilmsAction } from '../../../store/api-actions';
 import { useEffect } from 'react';
 import Catalog from '../../catalog/catalog';
-import { getCurrentSimilarFilms, getFilmDataLoading, getSimilarFilmsLoading } from '../../../store/film-data/selectors';
-import { getCurrentFilmReviews, getFilmReviewsLoading } from '../../../store/review-data/selectors';
+import { getCurrentSimilarFilms, getCurrentFilmLoading, getSimilarFilmsLoading } from '../../../store/film-data/selectors';
+import { getCurrentFilmReviews, getCurrentFilmReviewsLoading } from '../../../store/review-data/selectors';
 import { getAuthorizationStatus } from '../../../store/user-data/selectors';
 import HeaderLogo from '../../header-logo/header-logo';
 import UserBlock from '../../user-block/user-block';
@@ -22,11 +22,11 @@ export default function MoviePage() {
   const dispatch = useAppDispatch();
 
   const film = useFilmById();
-  const isFilmDataLoading = useAppSelector(getFilmDataLoading);
+  const isCurrentFilmLoading = useAppSelector(getCurrentFilmLoading);
   const similarFilms = useAppSelector(getCurrentSimilarFilms);
   const isSimilarFilmsDataLoading = useAppSelector(getSimilarFilmsLoading);
   const filmReviews = useAppSelector(getCurrentFilmReviews);
-  const isFilmReviewsDataLoading = useAppSelector(getFilmReviewsLoading);
+  const isCurrentFilmReviewsLoading = useAppSelector(getCurrentFilmReviewsLoading);
   const favoriteFilmCount = useAppSelector(getFavoriteFilmCount);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
@@ -39,7 +39,7 @@ export default function MoviePage() {
 
   return (
     <div>
-      {film && !isFilmDataLoading ?
+      {film && !isCurrentFilmLoading ?
         <>
           <Helmet>
             <title>WTW. {film.name}</title>
@@ -90,7 +90,7 @@ export default function MoviePage() {
                 <div className="film-card__poster film-card__poster--big">
                   <img src={film.posterImage} alt={film.name} width="218" height="327" />
                 </div>
-                <FilmTabs film={film} reviews={isFilmReviewsDataLoading ? [] : filmReviews} />
+                <FilmTabs film={film} reviews={isCurrentFilmReviewsLoading ? [] : filmReviews} />
 
               </div>
             </div>

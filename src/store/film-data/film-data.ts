@@ -7,7 +7,7 @@ const initialState: FilmData = {
   films: [],
   isFilmsDataLoading: false,
   currentFilm: undefined,
-  isFilmDataLoading: false,
+  isCurrentFilmLoading: false,
   promoFilm: undefined,
   isPromoFilmLoading: false,
   currentSimilarFilms: [],
@@ -28,11 +28,11 @@ export const filmData = createSlice({
         state.isFilmsDataLoading = false;
       })
       .addCase(fetchFilmAction.pending, (state) => {
-        state.isFilmDataLoading = true;
+        state.isCurrentFilmLoading = true;
       })
       .addCase(fetchFilmAction.fulfilled, (state, action) => {
         state.currentFilm = action.payload;
-        state.isFilmDataLoading = false;
+        state.isCurrentFilmLoading = false;
       })
       .addCase(fetchSimilarFilmsAction.pending, (state) => {
         state.isSimilarFilmsLoading = true;
