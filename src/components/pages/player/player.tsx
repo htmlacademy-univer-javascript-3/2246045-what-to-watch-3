@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../../const';
 import { Helmet } from 'react-helmet-async';
 import { useAppSelector } from '../../hooks';
-import { getFilmDataLoading } from '../../../store/film-data/selectors';
+import { getCurrentFilmLoading } from '../../../store/film-data/selectors';
 import LoadingPage from '../loading-page/loading-page';
 import useFilmById from '../../hooks/get-film-by-id';
 import { useRef, useState } from 'react';
@@ -12,7 +12,7 @@ import { getTimeForPlayer } from '../../../utils/get-time-for-player';
 export default function PlayerScreen() {
   const navigate = useNavigate();
   const film = useFilmById();
-  const isFilmDataLoading = useAppSelector(getFilmDataLoading);
+  const isFilmDataLoading = useAppSelector(getCurrentFilmLoading);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);

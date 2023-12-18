@@ -4,7 +4,7 @@ import Catalog from '../../catalog/catalog';
 import HeaderLogo from '../../header-logo/header-logo';
 import UserBlock from '../../user-block/user-block';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getFavoriteFilmCount, getFavoriteFilms, getFavoriteFilmsDataLoading } from '../../../store/my-list-process/selectors';
+import { getFavoriteFilmCount, getFavoriteFilms, getFavoriteFilmsLoading } from '../../../store/my-list-process/selectors';
 import LoadingPage from '../loading-page/loading-page';
 import { useEffect } from 'react';
 import { fetchFavoriteFilmsAction } from '../../../store/api-actions';
@@ -13,7 +13,7 @@ export default function MyListScreen() {
   const dispatch = useAppDispatch();
   const favoriteFilmCount = useAppSelector(getFavoriteFilmCount);
   const favoriteFilms = useAppSelector(getFavoriteFilms);
-  const isFavoriteFilmsDataLoading = useAppSelector(getFavoriteFilmsDataLoading);
+  const isFavoriteFilmsDataLoading = useAppSelector(getFavoriteFilmsLoading);
 
   useEffect(() => {
     dispatch(fetchFavoriteFilmsAction());
