@@ -20,7 +20,7 @@ describe('Async actions', () => {
     store = mockStoreCreator({
       [NameSpace.Film]: {
         films: [],
-        isFilmsDataLoading: false,
+        isFilmsLoading: false,
         currentFilm: undefined,
         isCurrentFilmLoading: false,
         promoFilm: undefined,

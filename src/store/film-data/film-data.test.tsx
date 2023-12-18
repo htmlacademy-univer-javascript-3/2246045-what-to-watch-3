@@ -6,7 +6,7 @@ import { filmData } from './film-data';
 describe('FilmData slice', () => {
   const initialState: FilmData = {
     films: [],
-    isFilmsDataLoading: false,
+    isFilmsLoading: false,
     currentFilm: undefined,
     isCurrentFilmLoading: false,
     promoFilm: undefined,

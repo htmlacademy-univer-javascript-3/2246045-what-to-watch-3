@@ -5,7 +5,7 @@ import { PromoFilm } from '../../types/promo';
 import { State } from '../../types/state';
 
 export const getFilms = (state: Pick<State, NameSpace.Film>): PreviewFilm[] => state[NameSpace.Film].films;
-export const getFilmsDataLoading = (state: Pick<State, NameSpace.Film>): boolean => state[NameSpace.Film].isFilmsDataLoading;
+export const getFilmsDataLoading = (state: Pick<State, NameSpace.Film>): boolean => state[NameSpace.Film].isFilmsLoading;
 
 export const getCurrentFilm = (state: Pick<State, NameSpace.Film>): Film | undefined => state[NameSpace.Film].currentFilm;
 export const getCurrentFilmLoading = (state: Pick<State, NameSpace.Film>): boolean => state[NameSpace.Film].isCurrentFilmLoading;

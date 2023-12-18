@@ -11,7 +11,7 @@ export type UserProcess = {
 
 export type FilmData = {
   films: PreviewFilm[];
-  isFilmsDataLoading: boolean;
+  isFilmsLoading: boolean;
   currentFilm?: Film;
   isCurrentFilmLoading: boolean;
   promoFilm?: PromoFilm;

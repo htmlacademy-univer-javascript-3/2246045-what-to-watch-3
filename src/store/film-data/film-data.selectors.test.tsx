@@ -15,7 +15,7 @@ describe('MyListProcess selectors', () => {
   const state = {
     [NameSpace.Film]: {
       films: makeFakePreviewFilms(),
-      isFilmsDataLoading: true,
+      isFilmsLoading: true,
       currentFilm: makeFakeFilm(),
       isCurrentFilmLoading: false,
       promoFilm: makeFakePromoFilm(),
@@ -35,11 +35,11 @@ describe('MyListProcess selectors', () => {
     });
 
     it('return "isFilmsDataLoading" from state', () => {
-      const { isFilmsDataLoading } = state[NameSpace.Film];
+      const { isFilmsLoading } = state[NameSpace.Film];
 
       const result = getFilmsDataLoading(state);
 
-      expect(result).toBe(isFilmsDataLoading);
+      expect(result).toBe(isFilmsLoading);
     });
   });
 
