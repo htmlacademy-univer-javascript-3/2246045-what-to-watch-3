@@ -11,9 +11,9 @@ export type UserProcess = {
 
 export type FilmData = {
   films: PreviewFilm[];
-  isFilmsDataLoading: boolean;
+  isFilmsLoading: boolean;
   currentFilm?: Film;
-  isFilmDataLoading: boolean;
+  isCurrentFilmLoading: boolean;
   promoFilm?: PromoFilm;
   isPromoFilmLoading: boolean;
   currentSimilarFilms: PreviewFilm[];
@@ -22,7 +22,7 @@ export type FilmData = {
 
 export type ReviewData = {
   currentFilmReviews: Review[];
-  isFilmReviewsLoading: boolean;
+  isCurrentFilmReviewsLoading: boolean;
 }
 
 export type GenreProcess = {

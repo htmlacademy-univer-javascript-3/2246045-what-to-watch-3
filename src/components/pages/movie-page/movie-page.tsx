@@ -9,8 +9,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchFilmReviewsAction, fetchSimilarFilmsAction } from '../../../store/api-actions';
 import { useEffect } from 'react';
 import Catalog from '../../catalog/catalog';
-import { getCurrentSimilarFilms, getFilmDataLoading, getSimilarFilmsLoading } from '../../../store/film-data/selectors';
-import { getCurrentFilmReviews, getFilmReviewsLoading } from '../../../store/review-data/selectors';
+import { getCurrentSimilarFilms, getCurrentFilmLoading, getSimilarFilmsLoading } from '../../../store/film-data/selectors';
+import { getCurrentFilmReviews, getCurrentFilmReviewsLoading } from '../../../store/review-data/selectors';
 import { getAuthorizationStatus } from '../../../store/user-process/selectors';
 import HeaderLogo from '../../header-logo/header-logo';
 import UserBlock from '../../user-block/user-block';
@@ -22,11 +22,11 @@ export default function MoviePage() {
   const dispatch = useAppDispatch();
 
   const film = useFilmById();
-  const isFilmDataLoading = useAppSelector(getFilmDataLoading);
+  const isFilmDataLoading = useAppSelector(getCurrentFilmLoading);
   const similarFilms = useAppSelector(getCurrentSimilarFilms);
   const isSimilarFilmsDataLoading = useAppSelector(getSimilarFilmsLoading);
   const filmReviews = useAppSelector(getCurrentFilmReviews);
-  const isFilmReviewsDataLoading = useAppSelector(getFilmReviewsLoading);
+  const isFilmReviewsDataLoading = useAppSelector(getCurrentFilmReviewsLoading);
   const favoriteFilmCount = useAppSelector(getFavoriteFilmCount);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 

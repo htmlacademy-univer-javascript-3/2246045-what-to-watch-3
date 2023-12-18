@@ -5,7 +5,7 @@ import { fetchFilmReviewsAction } from '../api-actions';
 
 const initialState: ReviewData = {
   currentFilmReviews: [],
-  isFilmReviewsLoading: false,
+  isCurrentFilmReviewsLoading: false,
 };
 
 export const reviewData = createSlice({
@@ -15,11 +15,11 @@ export const reviewData = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchFilmReviewsAction.pending, (state) => {
-        state.isFilmReviewsLoading = true;
+        state.isCurrentFilmReviewsLoading = true;
       })
       .addCase(fetchFilmReviewsAction.fulfilled, (state, action) => {
         state.currentFilmReviews = action.payload;
-        state.isFilmReviewsLoading = false;
+        state.isCurrentFilmReviewsLoading = false;
       });
   }
 });

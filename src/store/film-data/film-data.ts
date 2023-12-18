@@ -5,9 +5,9 @@ import { fetchFilmAction, fetchFilmsAction, fetchPromoFilmAction, fetchSimilarFi
 
 const initialState: FilmData = {
   films: [],
-  isFilmsDataLoading: false,
+  isFilmsLoading: false,
   currentFilm: undefined,
-  isFilmDataLoading: false,
+  isCurrentFilmLoading: false,
   promoFilm: undefined,
   isPromoFilmLoading: false,
   currentSimilarFilms: [],
@@ -21,18 +21,18 @@ export const filmData = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchFilmsAction.pending, (state) => {
-        state.isFilmsDataLoading = true;
+        state.isFilmsLoading = true;
       })
       .addCase(fetchFilmsAction.fulfilled, (state, action) => {
         state.films = action.payload;
-        state.isFilmsDataLoading = false;
+        state.isFilmsLoading = false;
       })
       .addCase(fetchFilmAction.pending, (state) => {
-        state.isFilmDataLoading = true;
+        state.isCurrentFilmLoading = true;
       })
       .addCase(fetchFilmAction.fulfilled, (state, action) => {
         state.currentFilm = action.payload;
-        state.isFilmDataLoading = false;
+        state.isCurrentFilmLoading = false;
       })
       .addCase(fetchSimilarFilmsAction.pending, (state) => {
         state.isSimilarFilmsLoading = true;
