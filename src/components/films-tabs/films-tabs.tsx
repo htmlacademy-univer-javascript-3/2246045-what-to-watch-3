@@ -55,13 +55,13 @@ export default function Tabs({film, reviews}: TabsProps) {
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
           <li className={cn('film-nav__item', {'film-nav__item--active': activeTab === MoviePageState.Overview})}>
-            <a className="film-nav__link" onClick={handlerOverviewLinkClick}>{MoviePageStateNameInterface[MoviePageState.Overview]}</a>
+            <a className="film-nav__link" data-testid="film-overview-link" onClick={handlerOverviewLinkClick}>{MoviePageStateNameInterface[MoviePageState.Overview]}</a>
           </li>
           <li className={cn('film-nav__item', {'film-nav__item--active': activeTab === MoviePageState.Details})}>
-            <a className="film-nav__link" onClick={handlerDetailsLinkClick}>{MoviePageStateNameInterface[MoviePageState.Details]}</a>
+            <a className="film-nav__link" data-testid="film-details-link" onClick={handlerDetailsLinkClick}>{MoviePageStateNameInterface[MoviePageState.Details]}</a>
           </li>
           <li className={cn('film-nav__item', {'film-nav__item--active': activeTab === MoviePageState.Reviews})}>
-            <a className="film-nav__link" onClick={handlerReviewsLinkClick}>{MoviePageStateNameInterface[MoviePageState.Reviews]}</a>
+            <a className="film-nav__link" data-testid="film-reviews-link" onClick={handlerReviewsLinkClick}>{MoviePageStateNameInterface[MoviePageState.Reviews]}</a>
           </li>
         </ul>
       </nav>

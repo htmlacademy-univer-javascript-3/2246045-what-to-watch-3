@@ -1,7 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { RATING_STAR_COUNT } from '../../const';
-import { useAppDispatch } from '../hooks';
+import { MAX_REVIEW_TEXT_LENGTH, RATING_STAR_COUNT } from '../../const';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import { postReview } from '../../store/api-actions';
+import { getFormReviewSubmitting } from '../../store/post-review-process/selectors';
 
 type FormReviewProps = {
   filmId: string;
@@ -11,6 +12,7 @@ export default function AddReviewForm({filmId}: FormReviewProps) {
   const dispatch = useAppDispatch();
   const [rating, setRating] = useState('');
   const [reviewText, setReviewText] = useState('');
+  const isFormSubmitting = useAppSelector(getFormReviewSubmitting);
 
   const handleRatingChange = (evt: ChangeEvent<HTMLInputElement>) => {
     setRating(evt.target.value);
@@ -19,7 +21,7 @@ export default function AddReviewForm({filmId}: FormReviewProps) {
     setReviewText(evt.target.value);
   };
 
-  function handleFormSubmit(evt: FormEvent<HTMLFormElement>) {
+  const handleFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     setRating(rating);
     setReviewText(reviewText);
@@ -30,7 +32,17 @@ export default function AddReviewForm({filmId}: FormReviewProps) {
         rating: Number(rating),
       })
     );
-  }
+  };
+  const isButtonDisabled = () => {
+    if (
+      rating === '' ||
+      reviewText.length < 50 ||
+      isFormSubmitting
+    ) {
+      return true;
+    }
+    return false;
+  };
 
   return (
     <div className="add-review">
@@ -41,6 +53,7 @@ export default function AddReviewForm({filmId}: FormReviewProps) {
               .reverse()
               .map((number) => [
                 <input
+                  data-testid="rating-star"
                   key={`input-star-${number}`}
                   className="rating__input"
                   onChange={handleRatingChange}
@@ -49,7 +62,7 @@ export default function AddReviewForm({filmId}: FormReviewProps) {
                   name="rating"
                   value={`${number}`}
                   checked={`${number}` === rating}
-                  required
+                  disabled={isFormSubmitting}
                 />,
                 <label
                   key={`label-star-${number}`}
@@ -62,7 +75,7 @@ export default function AddReviewForm({filmId}: FormReviewProps) {
           </div>
         </div>
 
-        <div className="add-review__text">
+        <div className="add-review__text" data-testid="add-review-text">
           <textarea
             value={reviewText}
             className="add-review__textarea"
@@ -70,11 +83,12 @@ export default function AddReviewForm({filmId}: FormReviewProps) {
             id="review-text"
             placeholder="Review text"
             onChange={handleReviewChange}
-            required
+            maxLength={MAX_REVIEW_TEXT_LENGTH}
+            disabled={isFormSubmitting}
           >
           </textarea>
           <div className="add-review__submit">
-            <button className="add-review__btn" type="submit">Post</button>
+            <button className="add-review__btn" type="submit" disabled={isButtonDisabled()}>Post</button>
           </div>
         </div>
       </form>

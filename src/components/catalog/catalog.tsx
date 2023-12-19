@@ -3,12 +3,12 @@ import { PreviewFilm } from '../../types/preview-film';
 import FilmCard from '../film-card/film-card';
 import { useRef, useState } from 'react';
 
-type FilmListProps = {
+type CatalogProps = {
   films: PreviewFilm[];
   filmCount?: number;
 }
 
-export default function Catalog({films, filmCount}: FilmListProps) {
+export default function Catalog({films, filmCount}: CatalogProps) {
   const [activeFilm, setActiveFilm] = useState('');
   const timer = useRef<NodeJS.Timeout>();
   const sliceFilms = filmCount ? films.slice(0, filmCount) : films;

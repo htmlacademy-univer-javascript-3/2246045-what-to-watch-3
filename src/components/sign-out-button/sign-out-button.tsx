@@ -7,6 +7,7 @@ export default function SignOutButton() {
   const dispatch = useAppDispatch();
   return(
     <Link
+      data-testid="log-out"
       className="user-block__link"
       to={AppRoute.SignIn}
       onClick={(evt) => {

@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { makeFakeFilm } from '../../utils/mocks';
 import FilmOverview from './film-overview';
 
-describe('Component: FilmOverview', () => {
+describe('FilmOverview', () => {
   it('render correctly', () => {
     const film = makeFakeFilm();
     const filmDirector = film.director;

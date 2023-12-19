@@ -14,7 +14,7 @@ export default function PlayerScreen() {
   const film = useFilmById();
   const isFilmDataLoading = useAppSelector(getCurrentFilmLoading);
 
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const progressRef = useRef<HTMLProgressElement | null>(null);
   const togglerRef = useRef<HTMLDivElement | null>(null);
@@ -75,6 +75,7 @@ export default function PlayerScreen() {
         poster={film.backgroundImage}
         ref={videoRef}
         onTimeUpdate={handleTimeUpdate}
+        autoPlay
       >
       </video>
 
@@ -92,7 +93,7 @@ export default function PlayerScreen() {
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play" onClick={handleControlClick}>
+          <button type="button" className="player__play" data-testid="video-control" onClick={handleControlClick}>
             {isPlaying ? (
               <>
                 <svg viewBox="0 0 14 21" width="14" height="21">

@@ -11,44 +11,45 @@ import { getCurrentFilmLoading } from '../../../store/film-data/selectors';
 
 export default function AddReviewScreen() {
   const film = useFilmById();
-  const isFilmDataLoading = useAppSelector(getCurrentFilmLoading);
-
+  const isCurrentFilmLoading = useAppSelector(getCurrentFilmLoading);
+  if (!film || isCurrentFilmLoading) {
+    return <LoadingPage />;
+  }
   return (
-    <section className="film-card film-card--full">
-      {film && !isFilmDataLoading ?
-        <>
-          <Helmet>
-            <title>WTW. Add review {film.name}</title>
-          </Helmet>
-          <div className="film-card__header">
-            <div className="film-card__bg">
-              <img src={film.backgroundImage} alt={film.name} />
-            </div>
-            <h1 className="visually-hidden">WTW</h1>
+    <section className="film-card film-card--full" style={{ backgroundColor: film.backgroundColor }}>
+      <Helmet>
+        <title>WTW. Add review {film.name}</title>
+      </Helmet>
+      <div className="film-card__header">
+        <div className="film-card__bg">
+          <img src={film.backgroundImage} alt={film.name} />
+        </div>
 
-            <header className="page-header">
-              <HeaderLogo />
+        <h1 className="visually-hidden">WTW</h1>
 
-              <nav className="breadcrumbs">
-                <ul className="breadcrumbs__list">
-                  <li className="breadcrumbs__item">
-                    <Link to={`${AppRoute.Films}/${film.id}`} className="breadcrumbs__link">{film.name}</Link>
-                  </li>
-                  <li className="breadcrumbs__item">
-                    <Link to={`${AppRoute.Films}/${film.id}/review`} className="breadcrumbs__link">Add review</Link>
-                  </li>
-                </ul>
-              </nav>
+        <header className="page-header">
+          <HeaderLogo />
 
-              <UserBlock />
-            </header>
+          <nav className="breadcrumbs">
+            <ul className="breadcrumbs__list">
+              <li className="breadcrumbs__item">
+                <Link to={`${AppRoute.Films}/${film.id}`} className="breadcrumbs__link">{film.name}</Link>
+              </li>
+              <li className="breadcrumbs__item">
+                <Link to={`${AppRoute.Films}/${film.id}/review`} className="breadcrumbs__link">Add review</Link>
+              </li>
+            </ul>
+          </nav>
 
-            <div className="film-card__poster film-card__poster--small">
-              <img src={film.posterImage} alt={film.name} width="218" height="327" />
-            </div>
-          </div>
-          <AddReviewForm filmId={film.id} />
-        </> : <LoadingPage />}
+          <UserBlock />
+        </header>
+
+        <div className="film-card__poster film-card__poster--small">
+          <img src={film.posterImage} alt={film.name} width="218" height="327" />
+        </div>
+      </div>
+
+      <AddReviewForm filmId={film.id} />
     </section>
   );
 }

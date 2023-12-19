@@ -1,17 +1,22 @@
 import { withHistory } from '../../utils/mock-component';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import ShowMoreFilmButton from './show-more-button';
 
-describe('Component: ShowMoreFilmButton', () => {
+describe('ShowMoreFilmButton', () => {
+  const onShowMoreFilmButtonClick = vi.fn();
+  const preparedComponent = withHistory(<ShowMoreFilmButton onShowMoreFilmButtonClick={onShowMoreFilmButtonClick}/>);
+
   it('render correctly', () => {
-    const onShowMoreFilmButtonClick = () => '';
-    const textButton = /Show more/i;
-
-    const preparedComponent = withHistory(<ShowMoreFilmButton onShowMoreFilmButtonClick={onShowMoreFilmButtonClick}/>);
-
     render(preparedComponent);
 
-    expect(screen.getByText(textButton)).toBeInTheDocument();
+    expect(screen.getByText(/Show more/i)).toBeInTheDocument();
     expect(screen.getByRole('button')).toBeInTheDocument();
+  });
+
+  it('show more films on click', async () => {
+    render(preparedComponent);
+    await userEvent.click(screen.getByText(/Show more/i));
+    expect(onShowMoreFilmButtonClick).toBeCalledTimes(1);
   });
 });
