@@ -9,11 +9,12 @@ type DetailMessageType = {
 }
 const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
-  [StatusCodes.NOT_FOUND]: true
+  [StatusCodes.NOT_FOUND]: true,
+  [StatusCodes.INTERNAL_SERVER_ERROR]: true,
 };
 const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];
 
-const shouldUnauthorizedError = () => StatusCodes.UNAUTHORIZED;
+const shouldUnauthorizedError = (response: AxiosResponse) => response.status === StatusCodes.UNAUTHORIZED;
 
 const BACKEND_URL = 'https://13.design.pages.academy/wtw';
 const REQUEST_TIMEOUT = 5000;
@@ -38,9 +39,10 @@ export const createAPI = (): AxiosInstance => {
       if (error.response && shouldDisplayError(error.response)) {
         const detailMessage = (error.response.data);
         toast.warn(detailMessage.message);
-      }
-      if (error.response && shouldUnauthorizedError()) {
+      }else if (error.response && shouldUnauthorizedError(error.response)) {
         dropToken();
+      } else {
+        toast.warn('Error has occurred. Please repeat again');
       }
       throw error;
     }

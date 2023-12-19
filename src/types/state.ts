@@ -25,6 +25,10 @@ export type ReviewData = {
   isCurrentFilmReviewsLoading: boolean;
 }
 
+export type PostingReviewProcess = {
+  isFormReviewSubmitting: boolean;
+}
+
 export type GenreProcess = {
   genre: string;
 }

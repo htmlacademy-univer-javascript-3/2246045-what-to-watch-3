@@ -49,7 +49,7 @@ export default function MainPage() {
           backgroundImage={promoFilmCard.backgroundImage}
           isFavorite={promoFilmCard.isFavorite}
         />}
-      <div className="page-content">
+      <div className="page-content" data-testid="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenreList genres={getGenreList(films)} onGenreClick={() => setShownFilmCount(MOVIE_CARDS_COUNT)}/>

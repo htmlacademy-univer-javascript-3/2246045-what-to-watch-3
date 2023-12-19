@@ -13,6 +13,7 @@ import { ReviewAddingData } from '../types/review-add-data';
 import { PromoFilm } from '../types/promo';
 import { FilmFavoriteStatus } from '../types/favorite-film-status';
 import { FavoriteFilmPostData } from '../types/favorite-film-data';
+import { clearMyList } from './my-list-process/my-list-process';
 
 export const fetchFilmAction = createAsyncThunk<Film, {filmId: string}, {
   dispatch: AppDispatch;
@@ -109,7 +110,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
   extra: AxiosInstance;
 }>(
   'user/login',
-  async ({login: email, password}, {dispatch, extra: api}) => {
+  async ({ email, password}, {dispatch, extra: api}) => {
     const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
     saveToken(token);
     dispatch(redirectToRoute(AppRoute.Main));
@@ -121,9 +122,9 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   extra: AxiosInstance;
 }>(
   'user/logout',
-  async (_arg, {dispatch, extra: api}) => {
+  async (_arg, { dispatch, extra: api }) => {
     await api.delete(APIRoute.Logout);
-    dispatch(redirectToRoute(AppRoute.Main));
+    dispatch(clearMyList());
     dropToken();
   },
 );

@@ -34,6 +34,12 @@ export const DELAY = 1000;
 export const SECOND_COUNT_IN_HOUR = 3600;
 export const SECOND_COUNT_IN_MINUTE = 60;
 export const MINUTE_COUNT_IN_HOUR = 60;
+export const MAX_REVIEW_TEXT_LENGTH = 400;
+
+export const SingInErrorMessage = {
+  Email: 'Please enter a valid email address',
+  Password: 'Password should contain at least one number and one letter',
+};
 
 export enum APIRoute {
   Films = '/films',
@@ -51,4 +57,5 @@ export enum NameSpace {
     Film = 'FILM',
     Review = 'REVIEW',
     User = 'USER',
+    PostingReview = 'POSTING_REVIEW'
 }

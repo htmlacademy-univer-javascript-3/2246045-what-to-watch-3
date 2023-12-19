@@ -45,7 +45,7 @@ export default function VideoPlayer({isPlaying, src, poster}: VideoPlayerProps) 
   }, [isPlaying, isLoaded]);
 
   return(
-    <video poster={poster} width="280" height="175" ref={videoRef} muted>
+    <video data-testid="video" poster={poster} width="280" height="175" ref={videoRef} muted>
       <source src={src} />
     </video>
   );

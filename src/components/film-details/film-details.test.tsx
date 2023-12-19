@@ -4,7 +4,7 @@ import FilmDetails from './film-details';
 import { makeFakeFilm } from '../../utils/mocks';
 import { getRunTime } from '../../utils/get-run-time';
 
-describe('Component: FilmDetails', () => {
+describe('FilmDetails', () => {
   it('render correctly', () => {
     const film = makeFakeFilm();
     const filmDirector = film.director;

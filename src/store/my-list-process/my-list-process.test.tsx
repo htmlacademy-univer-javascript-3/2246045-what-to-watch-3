@@ -2,7 +2,7 @@ import { FilmFavoriteStatus } from '../../types/favorite-film-status';
 import { MyFilmProcess } from '../../types/state';
 import { makeFakeFilm, makeFakePreviewFilms } from '../../utils/mocks';
 import { fetchFavoriteFilmsAction, postFilmFavoriteStatus } from '../api-actions';
-import { myListProcess } from './my-list-process';
+import { myListProcess, clearMyList } from './my-list-process';
 
 describe('MyListProcess slice', () => {
   const initialState: MyFilmProcess = {
@@ -75,6 +75,21 @@ describe('MyListProcess slice', () => {
       const expectedState = { ...initialState, favoriteFilmCount: -1 };
 
       const result = myListProcess.reducer(initialState, postFilmFavoriteStatus.fulfilled(film, '', filmFavoriteStatus));
+
+      expect(result).toEqual(expectedState);
+    });
+  });
+  describe('clearMyList', () => {
+    it('clear my list with "clearMyList" action', () => {
+      const mockFavoriteFilms = makeFakePreviewFilms();
+      const previousState = {
+        favoriteFilms: mockFavoriteFilms,
+        favoriteFilmCount: mockFavoriteFilms.length,
+        isFavoriteFilmsLoading: false,
+      };
+      const expectedState = { ...initialState };
+
+      const result = myListProcess.reducer(previousState, clearMyList());
 
       expect(result).toEqual(expectedState);
     });

@@ -12,7 +12,12 @@ const initialState: MyFilmProcess = {
 export const myListProcess = createSlice({
   name: NameSpace.MyList,
   initialState,
-  reducers: {},
+  reducers: {
+    clearMyList: (state) => {
+      state.favoriteFilms = [];
+      state.favoriteFilmCount = 0;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchFavoriteFilmsAction.pending, (state) => {
@@ -33,3 +38,4 @@ export const myListProcess = createSlice({
       });
   }
 });
+export const { clearMyList } = myListProcess.actions;
