@@ -8,7 +8,6 @@ import { APIRoute, AppRoute, SingInErrorMessage } from '../../../const';
 import { extractActionsTypes } from '../../../utils/mocks';
 import { loginAction } from '../../../store/api-actions';
 import { redirectToRoute } from '../../../store/action';
-import { fetchFavoriteFilmsAction } from '../../../store/api-actions';
 
 describe('SingInScreen', () => {
   const mockHistory = createMemoryHistory();
