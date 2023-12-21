@@ -9,7 +9,7 @@ import { extractActionsTypes } from '../../utils/mocks';
 import { postReview } from '../../store/api-actions';
 
 
-describe('FormReview', () => {
+describe('AddReviewForm', () => {
   const mockFilmId = makeFakeFilmId();
   const { withStoreComponent, mockStore, mockAxiosAdapter } = withStore(
     (<FormReview filmId={mockFilmId} />), {

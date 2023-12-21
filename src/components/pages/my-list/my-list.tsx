@@ -9,7 +9,7 @@ import LoadingPage from '../loading-page/loading-page';
 import { useEffect } from 'react';
 import { fetchFavoriteFilmsAction } from '../../../store/api-actions';
 
-export default function MyListScreen() {
+export default function MyListPage() {
   const dispatch = useAppDispatch();
   const favoriteFilmCount = useAppSelector(getFavoriteFilmCount);
   const favoriteFilms = useAppSelector(getFavoriteFilms);

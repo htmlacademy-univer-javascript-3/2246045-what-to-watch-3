@@ -5,13 +5,13 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 import { useNavigate } from 'react-router-dom';
 import { getFavoriteFilmCount } from '../../store/my-list-process/selectors';
 
-type ChangeFavoriteStatusButtonProps = {
+type ChangeFavoriteFilmButtonProps = {
   filmId: string;
   isFavorite: boolean;
   authorizationStatus: AuthorizationStatus;
 }
 
-export default function ChangeFavoriteStatusButton({filmId, isFavorite, authorizationStatus}: ChangeFavoriteStatusButtonProps) {
+export default function ChangeFavoriteFilmButton({filmId, isFavorite, authorizationStatus}: ChangeFavoriteFilmButtonProps) {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [isCurrentFavorite, setCurrentFavorite] = useState(isFavorite);

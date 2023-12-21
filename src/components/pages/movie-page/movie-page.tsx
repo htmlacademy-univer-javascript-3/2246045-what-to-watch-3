@@ -14,7 +14,7 @@ import { getCurrentFilmReviews, getCurrentFilmReviewsLoading } from '../../../st
 import { getAuthorizationStatus } from '../../../store/user-process/selectors';
 import HeaderLogo from '../../header-logo/header-logo';
 import UserBlock from '../../user-block/user-block';
-import ChangeFavoriteStatusButton from '../../change-favorite-film-button/change-favorite-film-button';
+import ChangeFavoriteFilmButton from '../../change-favorite-film-button/change-favorite-film-button';
 
 export default function MoviePage() {
   const navigate = useNavigate();
@@ -70,7 +70,7 @@ export default function MoviePage() {
                       </svg>
                       <span>Play</span>
                     </button>
-                    <ChangeFavoriteStatusButton
+                    <ChangeFavoriteFilmButton
                       filmId={film.id}
                       isFavorite={film.isFavorite}
                       authorizationStatus={authorizationStatus}

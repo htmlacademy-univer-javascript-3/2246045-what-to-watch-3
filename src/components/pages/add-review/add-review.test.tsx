@@ -2,10 +2,10 @@ import { createMemoryHistory } from 'history';
 import { withStore, withHistory } from '../../../utils/mock-component';
 import { makeFakeFilm, makeFakeStore } from '../../../utils/mocks';
 import { AppRoute, NameSpace } from '../../../const';
-import AddReviewScreen from './add-review';
+import AddReviewPage from './add-review';
 import { render, screen } from '@testing-library/react';
 
-describe('AddReviewScreen', () => {
+describe('AddReviewPage', () => {
   const mockHistory = createMemoryHistory();
   const mockFilm = makeFakeFilm();
 
@@ -15,7 +15,7 @@ describe('AddReviewScreen', () => {
 
   it('render correctly', () => {
     const { withStoreComponent } = withStore(
-      withHistory(<AddReviewScreen />, mockHistory),
+      withHistory(<AddReviewPage />, mockHistory),
       makeFakeStore({
         [NameSpace.Film]: {
           films: [],

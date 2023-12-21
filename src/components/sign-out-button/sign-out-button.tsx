@@ -9,7 +9,7 @@ export default function SignOutButton() {
     <Link
       data-testid="log-out"
       className="user-block__link"
-      to={AppRoute.SignIn}
+      to={AppRoute.Main}
       onClick={(evt) => {
         evt.preventDefault();
         dispatch(logoutAction());

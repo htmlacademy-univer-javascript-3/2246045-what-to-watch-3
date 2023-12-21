@@ -5,7 +5,7 @@ import { makeFakeFilm, makeFakeStore } from '../../../utils/mocks';
 import MoviePage from './movie-page';
 import { render, screen } from '@testing-library/react';
 
-describe('FilmScreen', () => {
+describe('MoviePage', () => {
   const mockFilm = makeFakeFilm();
   const mockHistory = createMemoryHistory();
 

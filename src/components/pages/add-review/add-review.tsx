@@ -9,7 +9,7 @@ import UserBlock from '../../user-block/user-block';
 import HeaderLogo from '../../header-logo/header-logo';
 import { getCurrentFilmLoading } from '../../../store/film-data/selectors';
 
-export default function AddReviewScreen() {
+export default function AddReviewPage() {
   const film = useFilmById();
   const isCurrentFilmLoading = useAppSelector(getCurrentFilmLoading);
   if (!film || isCurrentFilmLoading) {

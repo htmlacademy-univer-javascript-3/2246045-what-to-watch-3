@@ -4,7 +4,7 @@ import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
 import { withStore, withHistory } from '../../../utils/mock-component';
 import { makeFakeFilmId, makeFakeStore } from '../../../utils/mocks';
-import PlayerScreen from './player';
+import Player from './player';
 
 describe('Player', () => {
   const mockFilmId = makeFakeFilmId();
@@ -15,7 +15,7 @@ describe('Player', () => {
   });
 
   const { withStoreComponent } = withStore(
-    withHistory(<PlayerScreen />,
+    withHistory(<Player />,
       mockHistory
     ),
     makeFakeStore()

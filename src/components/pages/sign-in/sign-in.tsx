@@ -7,7 +7,7 @@ import cn from 'classnames';
 import { SingInErrorMessage } from '../../../const';
 import { loginAction } from '../../../store/api-actions';
 
-export default function SignInScreen() {
+export default function SignInPage() {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
   const [error, setError] = useState('');
