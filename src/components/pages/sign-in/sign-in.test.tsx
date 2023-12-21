@@ -1,5 +1,5 @@
 import { createMemoryHistory } from 'history';
-import SignInScreen from './sign-in';
+import SignInPage from './sign-in';
 import { withHistory, withStore } from '../../../utils/mock-component';
 import { makeFakeStore } from '../../../utils/mocks';
 import { render, screen } from '@testing-library/react';
@@ -9,10 +9,11 @@ import { extractActionsTypes } from '../../../utils/mocks';
 import { loginAction } from '../../../store/api-actions';
 import { redirectToRoute } from '../../../store/action';
 
+
 describe('SingInScreen', () => {
   const mockHistory = createMemoryHistory();
   const { withStoreComponent, mockStore, mockAxiosAdapter } = withStore(
-    withHistory(<SignInScreen />),
+    withHistory(<SignInPage />),
     makeFakeStore()
   );
 

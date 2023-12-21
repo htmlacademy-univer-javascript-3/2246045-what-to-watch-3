@@ -6,7 +6,7 @@ import { APIRoute, AuthorizationStatus, NameSpace } from '../../const';
 import userEvent from '@testing-library/user-event';
 import { postFilmFavoriteStatus } from '../../store/api-actions';
 
-describe('ChangeFavoriteStatusButton', () => {
+describe('ChangeFavoriteFilmButton', () => {
   it('render correctly', () => {
     const { withStoreComponent } = withStore(
       withHistory(

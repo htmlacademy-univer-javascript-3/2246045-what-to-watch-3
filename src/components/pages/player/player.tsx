@@ -9,7 +9,7 @@ import { useRef, useState } from 'react';
 import Error from '../404/error';
 import { getTimeForPlayer } from '../../../utils/get-time-for-player';
 
-export default function PlayerScreen() {
+export default function Player() {
   const navigate = useNavigate();
   const film = useFilmById();
   const isFilmDataLoading = useAppSelector(getCurrentFilmLoading);

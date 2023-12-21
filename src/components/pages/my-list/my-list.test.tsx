@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { withStore, withHistory } from '../../../utils/mock-component';
 import { makeFakeStore } from '../../../utils/mocks';
-import MyListScreen from './my-list';
+import MyListPage from './my-list';
 
-describe('MyListScreen', () => {
+describe('MyListPage', () => {
   it('render correctly', () => {
-    const { withStoreComponent } = withStore(withHistory(<MyListScreen />), makeFakeStore());
+    const { withStoreComponent } = withStore(withHistory(<MyListPage />), makeFakeStore());
 
     render(withStoreComponent);
 

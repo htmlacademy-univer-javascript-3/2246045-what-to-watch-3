@@ -73,7 +73,7 @@ describe('App', () => {
     expect(screen.getByText(/Catalog/i)).toBeInTheDocument();
   });
 
-  it('render "AddReviewScreen" when user navigates to add review page', () => {
+  it('render "AddReviewPage" when user navigates to add review page', () => {
     const withHistoryComponent = withHistory(<App />, mockHistory);
     const mockFilmId = makeFakeFilmId();
     const { withStoreComponent } = withStore(withHistoryComponent, makeFakeStore({
